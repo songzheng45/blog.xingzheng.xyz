@@ -1,0 +1,37 @@
+language: node_js
+node_js:
+  - "4.4.1"
+
+before_install:
+  - git config --global push.default matching
+  - git config --global user.name "songzheng45" 
+  - git config --global user.email "songzheng45@126.com"
+
+install:
+  - npm install hexo-cli -g
+  - npm install hexo --save
+  - npm install
+  - npm install hexo-generator-feed --save
+  - npm install hexo-deployer-git --save
+  - npm install hexo-renderer-ejs --save
+  - npm install hexo-renderer-stylus --save
+  - npm install hexo-renderer-marked --save
+  - npm install hexo-renderer-sass --save
+
+script:
+  - hexo clean
+  - hexo generate
+
+after_success:
+  - cd ./public
+  - git init
+  - git add --all .
+  - git commit -m "Travis CI Auto Builder"
+  - git push --quiet --force https://$GH_Token@github.com/songzheng45/xingzheng.me.git gh-pages
+
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules

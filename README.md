@@ -1,0 +1,2 @@
+	
+[build-info](https://travis-ci.org/songzheng45/xingzheng.me.svg)
