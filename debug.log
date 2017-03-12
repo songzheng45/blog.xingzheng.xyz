@@ -1,0 +1,48 @@
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Hexo version: \u001b[35m3.2.2\u001b[39m","time":"2017-03-12T02:05:42.200Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Working directory: \u001b[35mD:\\GitRepo\\xingzheng.me\\\u001b[39m","time":"2017-03-12T02:05:42.206Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Config loaded: \u001b[35mD:\\GitRepo\\xingzheng.me\\_config.yml\u001b[39m","time":"2017-03-12T02:05:42.422Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-cli\u001b[39m","time":"2017-03-12T02:05:42.459Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-deployer-git\u001b[39m","time":"2017-03-12T02:05:42.466Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-archive\u001b[39m","time":"2017-03-12T02:05:42.478Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-index\u001b[39m","time":"2017-03-12T02:05:42.481Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-category\u001b[39m","time":"2017-03-12T02:05:42.485Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-tag\u001b[39m","time":"2017-03-12T02:05:42.489Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-marked\u001b[39m","time":"2017-03-12T02:05:42.498Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-stylus\u001b[39m","time":"2017-03-12T02:05:42.503Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-ejs\u001b[39m","time":"2017-03-12T02:05:42.514Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-server\u001b[39m","time":"2017-03-12T02:05:42.652Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Loading database.","time":"2017-03-12T02:05:42.664Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":30,"msg":"Start processing","time":"2017-03-12T02:05:42.673Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Processed: \u001b[35m_posts/hello-world.md\u001b[39m","time":"2017-03-12T02:05:42.755Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2017-03-12T02:05:42.931Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2017-03-12T02:05:42.931Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2017-03-12T02:05:42.932Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2017-03-12T02:05:42.933Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2017-03-12T02:05:42.934Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2017-03-12T02:05:42.934Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2017-03-12T02:05:42.935Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":30,"msg":"Hexo is running at \u001b[4mhttp://localhost:4000/\u001b[24m. Press Ctrl+C to stop.","time":"2017-03-12T02:05:42.944Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Database saved","time":"2017-03-12T02:05:42.949Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":40,"msg":"No layout: \u001b[35mindex.html\u001b[39m","time":"2017-03-12T02:05:45.177Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":40,"msg":"No layout: \u001b[35mindex.html\u001b[39m","time":"2017-03-12T02:05:47.346Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Processed: \u001b[35m_posts/index.md\u001b[39m","time":"2017-03-12T02:07:19.563Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2017-03-12T02:07:19.704Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2017-03-12T02:07:19.707Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2017-03-12T02:07:19.709Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2017-03-12T02:07:19.721Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2017-03-12T02:07:19.731Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2017-03-12T02:07:19.732Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2017-03-12T02:07:19.740Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Processed: \u001b[35m_posts/index.md\u001b[39m","time":"2017-03-12T02:07:29.708Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2017-03-12T02:07:29.826Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2017-03-12T02:07:29.828Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2017-03-12T02:07:29.829Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2017-03-12T02:07:29.830Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2017-03-12T02:07:29.830Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2017-03-12T02:07:29.831Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2017-03-12T02:07:29.832Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":40,"msg":"No layout: \u001b[35mindex.html\u001b[39m","time":"2017-03-12T02:07:36.995Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":40,"msg":"No layout: \u001b[35mindex.html\u001b[39m","time":"2017-03-12T02:07:38.092Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":40,"msg":"No layout: \u001b[35mindex.html\u001b[39m","time":"2017-03-12T02:07:39.075Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":30,"msg":"Bye!","time":"2017-03-12T02:08:00.497Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":23476,"level":20,"msg":"Database saved","time":"2017-03-12T02:08:00.783Z","v":0}
