@@ -24,10 +24,11 @@ script:
 
 after_success:
   - cd ./public
+  - cp ../CNAME CNAME
   - git init
   - git add --all .
   - git commit -m "Travis CI Auto Builder"
-  - git push --quiet --force https://$GH_Token@github.com/songzheng45/xingzheng.me.git gh-pages
+  - git push --quiet --force https://$GH_Token@github.com/songzheng45/xingzheng.me.git master:gh-pages
 
 branches:
   only:
