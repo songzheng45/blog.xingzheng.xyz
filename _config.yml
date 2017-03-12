@@ -68,7 +68,4 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: git@github.com:songzheng45/xingzheng.me.git
-  branch: gh-pages
-  message: update posts
+  type: 
