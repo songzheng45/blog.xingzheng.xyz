@@ -615,3 +615,4 @@
 {"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":14240,"level":20,"msg":"Rendering post: \u001b[35m2017/03/12/test2/index.html\u001b[39m","time":"2017-03-12T16:25:05.907Z","v":0}
 {"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":14240,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2017-03-12T16:25:10.260Z","v":0}
 {"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":14240,"level":20,"msg":"Rendering post: \u001b[35m2017/03/12/test2/index.html\u001b[39m","time":"2017-03-12T16:25:31.345Z","v":0}
+{"name":"hexo","hostname":"LAPTOP-QPNKNM95","pid":14240,"level":20,"msg":"Rendering index: \u001b[35mindex.html\u001b[39m","time":"2017-03-12T16:31:55.179Z","v":0}
