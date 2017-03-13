@@ -1,7 +1,7 @@
 ---
 title: GitHub Pages 如何绑定自定义域名
 date: 2017-03-12 20:22:00
-tags:
+tags: [GitHub Pages, 域名]
 ---
 
 ### 利用 GitHub 添加 CNAME

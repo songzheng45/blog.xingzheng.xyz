@@ -191,7 +191,7 @@ sidebar:
   offset_float: 0
 
   # Back to top in sidebar
-  b2t: false
+  b2t: true
 
   # Scroll percent label in b2t button
   scrollpercent: false
@@ -282,7 +282,10 @@ mathjax:
 #baidu_analytics:
 
 # Duoshuo ShortName
-#duoshuo_shortname:
+duoshuo_shortname: xingzheng
+
+# 多说热评文章 true 或者 false
+#duoshuo_hotartical: true
 
 # Disqus
 #disqus_shortname:

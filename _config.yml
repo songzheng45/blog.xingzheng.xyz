@@ -3,16 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 空白
+title: Just Do It
 subtitle:
 description: 不积跬步，无以至千里
 author: T羚羊
 language: zh-Hans
 timezone:
+avatar: /images/avatar.png
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.xingzheng.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
