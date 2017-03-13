@@ -1,0 +1,59 @@
+---
+title: Hexo使用总结
+tags: Hexo
+category: Hexo
+---
+
+### 新建文章:   
+```
+$ hexo new post <title>
+$ hexo new <title>
+```
+layout 可以省略，默认是 `post`   
+存放路径在： `source/_posts`。
+
+### 新建页面：
+```
+$ hexo new page <title>
+```
+如 `hexo new page "tags"` 新建`tags`页面，页面位置在：`source/tags`。
+
+<!--more--> 
+
+### 新建草稿
+```
+$ hexo new draft <title>
+```
+草稿默认不显示在博客首页，存放路径在 `source/_drafts`。  
+
+### 发布草稿
+```
+$ hexo publish [layout] <title>
+```
+
+### 修改默认布局
+修改`_config.yml`中的`default_layout`配置项，修改为 `scaffolds/`下的某个某个布局文件名。
+
+### 创建标签云
+[参考这里](https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BE%E4%BA%91%E9%A1%B5%E9%9D%A2)
+
+多标签的格式，在 `front-master` 中： 
+```
+---
+tags: [tag1,tag2,tag3]
+---
+```
+
+### 创建分类  
+[参考这里](https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2)
+
+
+### 分类/标签数量不准确
+清理并重新生成：  
+```
+$ hexo clean
+$ hexo generate
+```
+
+### 如何在首页开启“阅读更多”
+在文章中加 `<!--more-->` 进行截断。
