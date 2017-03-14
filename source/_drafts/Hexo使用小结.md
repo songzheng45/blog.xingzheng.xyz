@@ -1,8 +1,18 @@
 ---
-title: Hexo使用总结
+title: Hexo使用小结
 tags: Hexo
 category: Hexo
 ---
+
+## 什么是 Hexo
+
+## 安装Hexo
+
+## 使用Hexo
+### 初始化
+```
+$ hexo init
+```
 
 ### 新建文章:   
 ```

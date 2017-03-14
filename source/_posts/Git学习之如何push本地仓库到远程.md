@@ -2,6 +2,7 @@
 title: Git学习之如何push本地仓库到远程
 date: 2017-03-12 20:07:02
 tags: Git
+category: 版本管理
 ---
 
 演示：  
