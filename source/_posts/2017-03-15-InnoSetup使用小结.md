@@ -3,6 +3,7 @@ title: InnoSetup 使用小结
 tags:
   - InnoSetup
 date: 2017-03-15 00:21:53
+updated: 2017-03-15 15:05:08
 category:
 ---
 
@@ -10,7 +11,9 @@ category:
 >背景  
 接上篇[Could not load file or assembly System, Version=2.0.5.0 in .NET 4][loadsystem]。  
 由于.NET Framework 4.0补丁包，区分 X86、 X64 和 IA64，而客户很难区分自己的电脑是多少位的，因此产品同事希望能在技术上解决。  
-于是查了下 Inno Setup 的相关资料，脚本语言 Pascal。但是毕竟没有深入研究，仅限于这次的需求。  
+于是查了下 Inno Setup 的相关资料，脚本语言 Pascal。但是毕竟没有深入研究，仅限于这次的需求。 
+
+[InnoSetup中文帮助.pdf](uploads/InnoSetup中文帮助.pdf)
 
 ## 检查系统是32位还是64位
 - 方法一：
