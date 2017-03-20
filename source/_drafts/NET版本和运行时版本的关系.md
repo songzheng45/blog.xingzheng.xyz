@@ -1,0 +1,48 @@
+---
+title: .NET版本和运行时版本的关系
+tags: [.NET,运行时,Runtime]
+category: .NET Framework
+---
+
+.NET 版本号和运行时版本号是不同的，以下是一些运行时版本的例子：
+
+### Base 4.0
+
+- 4.0.30319.1 = .NET 4.0 RTM
+- 4.0.30319.269 = .NET 4.0 on Windows XP SP3, 7, 7 SP1 (with MS12-035 GDR security update)
+- 4.0.30319.276 = .NET 4.0 on Windows XP SP3 (4.0.3 Runtime update)
+- 4.0.30319.296 = .NET 4.0 on Windows XP SP3, 7 (with MS12-074 GDR security update)
+- 4.0.30319.544 = .NET 4.0 on Windows XP SP3, 7, 7 SP1 (with MS12-035 LDR security update)
+- 4.0.30319.1008 = .NET 4.0 on Windows XP SP3, 7, 7 SP1 (with MS13-052 GDR security update)
+- 4.0.30319.1022 = .NET 4.0 on Windows XP SP3, 7, 7 SP1 (with MS14-009 GDR security update)
+- 4.0.30319.1026 = .NET 4.0 on Windows XP SP3, 7, 7 SP1 (with MS14-057 GDR security update)
+- 4.0.30319.2034 = .NET 4.0 on Windows XP SP3, 7, 7 SP1 (with MS14-009 LDR security update)
+
+### 4.5
+
+- 4.0.30319.17626 = .NET 4.5 RC
+- 4.0.30319.17929 = .NET 4.5 RTM
+- 4.0.30319.18010 = .NET 4.5 on Windows 8
+- 4.0.30319.18052 = .NET 4.5 on Windows 7 SP1 64-bit
+- 4.0.30319.18063 = .NET 4.5 on Windows 7 SP1 64-bit (with MS14-009 security update)
+
+### 4.5.1
+
+- 4.0.30319.18408 = .NET 4.5.1 on Windows 7 SP1 64-bit
+- 4.0.30319.18444 = .NET 4.5.1 on Windows 7 SP1 64-bit (with MS14-009 security update)
+- 4.0.30319.34014 = .NET 4.5.1 on Windows 8.1 64-bit
+
+### 4.5.2
+
+- 4.0.30319.34209 = .NET 4.5.2 on Windows 7 SP1 64-bit
+- 4.0.30319.34209 = .NET 4.5.2 on Windows 8.1 64-bit
+
+### 4.6
+
+- 4.0.30319.42000 = .NET 4.6 on Windows 8.1 64-bit
+
+
+
+***
+
+参考：  [How to reliably detect the actual .NET 4.5 version installed](http://stackoverflow.com/questions/12971881/how-to-reliably-detect-the-actual-net-4-5-version-installed)
