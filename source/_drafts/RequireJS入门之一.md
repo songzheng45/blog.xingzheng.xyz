@@ -1,5 +1,5 @@
 ---
-title: RequireJS 入门(一)
+title: RequireJS 入门(一)第一个实例
 tags: [RequireJS]
 category: 前端
 ---
@@ -85,4 +85,4 @@ Ok，到这里我们就完成了一个非常简单的demo，虽然没有什么�
 ## 总结
 - RequireJS 鼓励代码的模块化，并使用异步方式加载模块
 - 使用 `define()` 自定义模块
-- 使用 `require()`引用依赖的模块对象
+- 使用 `require()`引用依赖的模块
