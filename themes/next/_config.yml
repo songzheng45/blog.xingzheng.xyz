@@ -282,13 +282,13 @@ mathjax:
 #baidu_analytics:
 
 # Duoshuo ShortName
-duoshuo_shortname: xingzheng
+#duoshuo_shortname: xingzheng
 
 # 多说热评文章 true 或者 false
 #duoshuo_hotartical: true
 
 # Disqus
-#disqus_shortname:
+disqus_shortname: xingzheng
 
 # Hypercomments
 #hypercomments_id:
