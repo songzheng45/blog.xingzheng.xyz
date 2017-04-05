@@ -18,6 +18,8 @@ category: .NET Framework
 - 4.0.30319.1026 = .NET 4.0 on Windows XP SP3, 7, 7 SP1 (with MS14-057 GDR security update)
 - 4.0.30319.2034 = .NET 4.0 on Windows XP SP3, 7, 7 SP1 (with MS14-009 LDR security update)
 
+<!--more-->
+
 ### 4.5
 
 - 4.0.30319.17626 = .NET 4.5 RC

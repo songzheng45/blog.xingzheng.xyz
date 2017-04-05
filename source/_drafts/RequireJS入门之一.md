@@ -11,6 +11,9 @@ RequireJS的目标是鼓励代码的模块化，它使用了不同于传统`<scr
 我们先从一个最简单的Demo入手，使用最少的配置，了解如何使用 RequireJS。  
 这个demo里我们封装一个选择器模块`selector.js`，然后在`main.js`中使用。  
 
+<!--more-->
+
+
 demo的目录结构如下：  
 ```
 | -- index.html
