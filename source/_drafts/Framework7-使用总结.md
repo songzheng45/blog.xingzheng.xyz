@@ -45,3 +45,5 @@ homeF7View.router.back({
 ```javascript
 $$('div[data-page=payment-list]').remove();
 ```
+
+## Tab页激活时也出发了`<div class="view">`的`show`事件
