@@ -31,7 +31,7 @@ homeF7View.router.back({
     url: 'modules/project/detail.html',
     context: contextData
     force: true,
-    ignoreCache: true,
+    ignoreCache: true
 });
 ```
 
@@ -46,4 +46,27 @@ homeF7View.router.back({
 $$('div[data-page=payment-list]').remove();
 ```
 
-## Tab页激活时也出发了`<div class="view">`的`show`事件
+## Tab页激活时也触发了`<div class="view">`的`show`事件
+
+
+## ajax error:parseerror
+使用DOM7发送Ajax请求，返回的JSON格式正确，但是总是报错提示：“error:parseerror”。
+``` javascript
+$$.ajax({
+    url: url,
+    method: options.method,
+    data: options.data,
+    dataType: 'json',
+    success: function (data) {
+        // 请求成功，调用回调函数
+    },
+    error: function (xhr, status) {
+        // 接收到服务端响应后，总是执行到这里，status=parseerror
+        console.log('ajax error:' + status);
+    },
+    complete: function (xhr, status) {
+        console.log('ajax complete.');
+    }
+```
+解决：  
+将`dataType:'json'`去掉或修改为`text`，然后使用`JSON.parse(json)`手动解析服务端JSON数据。
