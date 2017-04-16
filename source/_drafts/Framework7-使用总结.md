@@ -70,3 +70,15 @@ $$.ajax({
 ```
 解决：  
 将`dataType:'json'`去掉或修改为`text`，然后使用`JSON.parse(json)`手动解析服务端JSON数据。
+
+## 无限滚动infinite-scroll 会触发多次监听事件
+[API参考](http://framework7.taobao.org/docs/infinite-scroll.html#.WO2JIoh94WV)  
+问题描述：  
+页面往下滚动加载分页数据，但是页面到底部后，会连续触发多次监听事件，偶尔会重复请求同一页的数据。  
+解决方案：  
+其实Demo中已经给出了，就是设置一个loading作为flag，重复的触发会被return。
+
+## 控制滚动条位置
+``` javascript
+$$('.page-content').scrollTop(0, 100);
+```
