@@ -30,6 +30,8 @@ C:\>npm install -g cordova
 $ sudo npm install -g cordova
 ```
 
+<!--more-->
+
 ### 创建App
 切换到你的源代码目录，创建一个 Cordova 项目：
 ```
