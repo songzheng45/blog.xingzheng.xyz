@@ -1,6 +1,6 @@
 ---
 title: 'Could not load file or assembly System, Version=2.0.5.0 in .NET 4'
-category: 'C#/.NET'
+category: '技术'
 date: 2017-03-15 00:15:05
 tags: [.NET Framework,Patch,补丁]
 ---

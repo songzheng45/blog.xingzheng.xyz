@@ -4,7 +4,7 @@ tags:
   - InnoSetup
 date: 2017-03-15 00:21:53
 updated: 2017-03-15 15:05:08
-category:
+category: 技术
 ---
 
 
