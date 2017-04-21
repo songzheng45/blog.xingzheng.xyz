@@ -1,12 +1,17 @@
 ---
-title: Hexo使用小结
+title: Hexo入门
 tags: Hexo
 category: Hexo
 ---
 
-## 什么是 Hexo
+## 什么是 Hexo？
+Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
 
 ## 安装Hexo
+前提要先安装 node 和 Git，然后使用npm安装Hexo：  
+```
+$ npm install -g hexo-cli
+```
 
 ## 使用Hexo
 ### 初始化
@@ -67,3 +72,8 @@ $ hexo generate
 
 ### 如何在首页开启“阅读更多”
 在文章中加 `<!--more-->` 进行截断。
+
+
+***
+
+参考：[Hexo概述](https://hexo.io/zh-cn/docs/index.html)
