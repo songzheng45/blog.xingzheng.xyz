@@ -80,3 +80,16 @@ social:
 # statistics
 baidu_analytics: 2045c6955a2f216146dd08378ea8d802
 google_analytics: UA-97888598-1
+
+# algolia site serch
+algolia:
+  applicationID: '6HYIZOHIHG'
+  apiKey: '49a85f4066c6c814ec9856d3e9ece026'
+  adminApiKey: '77038fd590591d29e4ea3733ea8e533b'
+  indexName: 'xingzheng.me'
+  chunkSize: 5000
+  fields:
+    - title
+    - slug
+    - path
+    - content:strip

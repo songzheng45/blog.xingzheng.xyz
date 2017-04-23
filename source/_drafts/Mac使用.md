@@ -1,0 +1,27 @@
+---
+title: Mac使用
+tags: [Mac]
+category:
+---
+
+>当前系统版本：macOS 10.12.4  
+
+## 快捷键
+参考[Mac 键盘快捷键](https://support.apple.com/zh-cn/HT201236)
+
+### Home/End
+Macbook的键盘没有直接的Home和End键，需要使用组合键来达到Home和End键的效果。  
+
+option + 左方向键/右方向键  
+control + A/E
+
+## 删除
+control + K：从光标处开始删除，直到行尾
+control + delete ：从光标处开始删除，直到行首
+
+## 撤销/重做
+command + Z : 撤销
+command + shift + Z : 重做
+
+## 重命名
+enter

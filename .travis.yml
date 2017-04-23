@@ -17,10 +17,12 @@ install:
   - npm install hexo-renderer-stylus --save
   - npm install hexo-renderer-marked --save
   - npm install hexo-renderer-sass --save
+  - npm install hexo-algolia --save
 
 script:
   - hexo clean
   - hexo generate
+  - hexo algolia
 
 after_success:
   - cd ./public
@@ -32,6 +34,7 @@ after_success:
 branches:
   only:
     - master
-cache:
-  directories:
-    - node_modules
+
+#cache:
+  #directories:
+    #- node_modules
