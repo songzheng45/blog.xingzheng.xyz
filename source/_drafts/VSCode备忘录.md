@@ -1,7 +1,7 @@
 ---
 title: VSCode备忘录
 tags: [VSCode]
-category: [编辑器]
+category: [技术]
 ---
 
 ## 自定义代码段

@@ -1,6 +1,7 @@
 ---
 title: Travis 自动构建 Hexo 并提交到 GitHub 分支
 tags: [Travis,Hexo]
+category: 
 ---
 
 ### 问题：Travis 没有构建

@@ -1,7 +1,7 @@
 ---
 title: RequireJS 入门(一)第一个实例
 tags: [RequireJS]
-category: 前端
+category: 技术
 ---
 
 ## 什么是 RequireJS

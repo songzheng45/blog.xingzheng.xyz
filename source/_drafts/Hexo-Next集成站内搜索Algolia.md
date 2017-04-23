@@ -24,3 +24,7 @@ $ hexo clean
 ERROR Plugin load failed: hexo-algolia
 Error: Cannot find module 'bluebird'
 ```
+安装 bluebird 即可解决：  
+``` bash
+npm install --save bluebird
+```
