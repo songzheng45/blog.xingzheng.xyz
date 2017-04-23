@@ -76,3 +76,7 @@ deploy:
 # Social links
 social:
   GitHub: https://github.com/songzheng45
+
+# statistics
+baidu_analytics: 2045c6955a2f216146dd08378ea8d802
+google_analytics: UA-97888598-1
