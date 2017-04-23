@@ -14,3 +14,13 @@ category:
 编辑站点配置`_config.yml`
 
 ## 配置Next主题
+
+
+## 问题
+
+### Cannot find module 'bluebird'
+``` bash
+$ hexo clean
+ERROR Plugin load failed: hexo-algolia
+Error: Cannot find module 'bluebird'
+```
