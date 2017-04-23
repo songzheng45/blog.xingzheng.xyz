@@ -16,7 +16,7 @@ since: 2017
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://blog.xingzheng.me
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year/:month/:day/:title.html
 permalink_defaults:
 
 # Directory
@@ -78,10 +78,6 @@ social:
   GitHub: https://github.com/songzheng45
   #cnblogs: http://www.cnblogs.com/songxingzheng
 
-# statistics
-baidu_analytics: 2045c6955a2f216146dd08378ea8d802
-google_analytics: UA-97888598-1
-
 # algolia site serch
 algolia:
   applicationID: '6HYIZOHIHG'
@@ -94,3 +90,9 @@ algolia:
     - slug
     - path
     - content:strip
+
+# hexo sitemap网站地图
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
