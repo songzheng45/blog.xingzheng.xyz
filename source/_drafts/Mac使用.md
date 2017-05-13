@@ -25,3 +25,11 @@ command + shift + Z : 重做
 
 ## 重命名
 enter
+
+## 锁屏
+- Ctrl+Shift+Power: 关闭屏幕
+- Cmd+Opt+Power: 睡眠 (sleep)
+- Cmd+Ctrl+Power: 重启 (restart)
+- Cmd+Ctrl+Opt+Power: 关机 (shutdown)
+
+如果需要锁屏后再进入时必须输入密码，则：“系统偏好设置”-“通用”，勾选“进入睡眠或开始屏幕保护程序【立即】要求输入密码”。
