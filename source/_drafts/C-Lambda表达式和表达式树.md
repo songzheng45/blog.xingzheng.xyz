@@ -88,4 +88,4 @@ Func<int> result = return5.Compile();
 Console.Write(result());
 ```
 >并不是所有的lambda表达式能被转换为表达式树。  
->例如，不能将带代码块的lambda表达式转换为表达式树。
+>例如，不能将带代码块的lambda表达式（即使只有一个return语句）转换为表达式树。
