@@ -2,3 +2,4 @@
 /public
 /*.log
 db*.json
+.DS_Store
