@@ -18,7 +18,7 @@ ASP.NET (System.Web)紧耦合IIS，IIS紧耦合 Windows，导致严重的局限�
 - System.Web更新慢，历史悠久，无法测试
 - ASP.NET 复杂的生命周期成为累赘  
 
-使用OWIN，Web Framework不再依赖IIS和OS，这意味着你能使用任何你想的来替换IIS(比如：Katana或者Nowin)，并且在必要时随时升级，而不是更新操作系统。
+使用OWIN，Web Framework不再依赖IIS和OS，这意味着你能使用任何你想用的WebServer来替换IIS(比如：Katana或者Nowin)，并且在必要时随时升级，而不是更新操作系统。
 
 ## OWIN的规范
 ### OWIN Layers
@@ -26,10 +26,10 @@ OWIN的规范非常简单，它定义了一系列的层（Layer），并且它�
 ![](http://images0.cnblogs.com/blog/299214/201505/312142198912477.png)  
 
 OWIN定义了4层：  
-- Host
-Host 是application和server在其中执行的进程，主要负责启动启动application。一些 Server 也是 Hosts。
-- Server
-The HTTP server that directly communicates with the client and then uses OWIN semantics to process requests.  Servers may require an adapter layer that converts to OWIN semantics.
+- Host  
+Host 是application和server在其中执行的进程，主要负责启动application。一些 Server 也是 Hosts。
+- Server  
+(The HTTP server that directly communicates with the client and then uses OWIN semantics to process requests.  Servers may require an adapter layer that converts to OWIN semantics.)  
 HTTP server直接和客户端进行交流，然后用OWIN的语义去处理请求。 Server 可能需要一个适配器层（layer）来转换成 OWIN 的语义。
 
 
@@ -41,7 +41,7 @@ HTTP server直接和客户端进行交流，然后用OWIN的语义去处理请�
 
 
 ***
-###参考
+### 参考
 [ASP.NET MVC随想录——漫谈OWIN](http://www.cnblogs.com/OceanEyes/p/thinking-in-asp-net-mvc-what-is-owin.html)  
 [ASP.NET MVC随想录——锋利的KATANA](http://www.cnblogs.com/OceanEyes/p/thinking-in-asp-net-mvc-what-is-katana.html)  
 [ASP.NET MVC随想录——创建自定义的Middleware中间件](http://www.cnblogs.com/OceanEyes/p/thinking-in-asp-net-mvc-create-custom-middleware.html)  
