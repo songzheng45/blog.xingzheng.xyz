@@ -15,6 +15,8 @@ Macbook的键盘没有直接的Home和End键，需要使用组合键来达到Hom
 option + 左方向键/右方向键  
 control + A/E
 
+<!--more-->
+
 ## 删除
 control + K：从光标处开始删除，直到行尾
 control + delete ：从光标处开始删除，直到行首

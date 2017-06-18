@@ -21,6 +21,8 @@ Func<string,int> returnLength;
 returnLength = (string text) => {return text.Length;};
 ```
 
+<!--more-->
+
 ### lambda 隐式参数列表语法：  
 *(implicitly-typed-parameter-list) => expression*  
 各个参数名之间以逗号分隔，无需类型，由编译器推断参数的类型。  

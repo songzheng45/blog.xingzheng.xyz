@@ -11,7 +11,9 @@ Model 绑定旨在为目标 Action 方法的执行生成参数列表，分为以
 1. 构建参数所需的原始数据（由 **ValueProvider** 提供）
 2. 执行绑定操作（由 **ModelBinder** 完成）
 
-这篇文章总结ASP.NET MVC是如何利用`ValueProvider`对象来提供源数据的。  
+这篇文章总结ASP.NET MVC5 是如何利用`ValueProvider`对象来提供源数据的。  
+
+<!--more-->
 
 一个 ValueProvider 对象是对一个数据容器的封装，该容器一般具有类似字典的数据结构。  
 所有的ValueProvider类型均实现了接口 [IValueProvider][IValueProvider]。如下代码段所示：  
