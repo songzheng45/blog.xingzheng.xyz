@@ -13,7 +13,6 @@ RequireJS的目标是鼓励代码的模块化，它使用了不同于传统`<scr
 
 <!--more-->
 
-
 demo的目录结构如下：  
 ```
 | -- index.html

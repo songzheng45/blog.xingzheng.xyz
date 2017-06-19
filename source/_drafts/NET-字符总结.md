@@ -1,8 +1,8 @@
 ---
-title: .NET 字符总结
+title: .NET char(字符)总结
 tags: 
     - .NET
-    - 字符
+    - char
 category: 技术
 ---
 
@@ -15,6 +15,8 @@ category: 技术
 public static UnicodeCategory GetUnicodeCategory (string s, int index);
 public static UnicodeCategory GetUnicodeCategory (char c);
 ```
+
+<!--more-->
 
 `ToLowerInvariant`和`ToUpperInvariant` 方法会忽略语言文化，将一个字符转换为它的小写或大写形式。  
 ``` csharp

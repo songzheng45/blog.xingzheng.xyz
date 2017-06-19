@@ -12,6 +12,8 @@ category:
 
 登录进去后，默认进入`Dashboard`页面。点击左侧菜单的`Indices`，点击右上角的`New Index`，创建新索引。
 
+<!--more-->
+
 ## 配置并安装algolia
 编辑站点配置`_config.yml`
 

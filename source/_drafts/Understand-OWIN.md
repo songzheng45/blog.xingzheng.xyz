@@ -20,6 +20,8 @@ ASP.NET (System.Web)紧耦合IIS，IIS紧耦合 Windows，导致严重的局限�
 
 使用OWIN，Web Framework不再依赖IIS和OS，这意味着你能使用任何你想用的WebServer来替换IIS(比如：Katana或者Nowin)，并且在必要时随时升级，而不是更新操作系统。
 
+<!--more-->
+
 ## OWIN的规范
 ### OWIN Layers
 OWIN的规范非常简单，它定义了一系列的层（Layer），并且它们的顺序是以堆（Stack）的形式定义。如下图：  
