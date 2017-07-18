@@ -7,7 +7,8 @@ category: 技术
 ## Redis简介
 Redis 是一个开源, BSD 授权,高级key-value 内存数据库.
 
-## macOS 下安装 Redis
+## 安装 Redis
+### macOS 下安装 Redis
 使用 homebrew 安装:
 ``` bash
 brew install redis

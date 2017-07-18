@@ -21,6 +21,29 @@ sudo nginx
 <!--more-->
 
 ## 配置
+mac上使用 brew 安装 Nginx ,默认配置文件是:
+```
+/usr/local/etc/nginx/nginx.conf
+```
+
+我们把默认端口号(8080)修改为80.  
+首先 执行命令`sudo nginx -s stop`停止 Nginx, 然后用 nano(或vim等)打开`nginx.conf`, 将
+```bash
+server {
+        listen       8080;
+        server_name  localhost;
+}
+```
+修改为:
+```bash
+server {
+        listen       80;
+        server_name  localhost;
+}
+```
+保存配置, 启动 Nginx.  
+打开 URL 地址`http://localhost`, 重新看到 nginx 的欢迎页面.
+
 
 ## 遇到的问题
 
@@ -52,6 +75,16 @@ Error: Could not symlink share/man/man8/nginx.8
 其中 `$USER`是当前用户名, 将`/usr/local`文件夹的所有者变更为当前用户.  
 如：`sudo chown -R chenjunbiao /usr/local`.   
 然后再执行`brew link nginx`, 就可以在终端使用`nginx`命令了.   
+
+
+### 端口被占用
+如果端口被占有,
+执行以下命令查看占用端口的进程:
+```
+sudo lsof -P -n -i :80 -i :8080 -i :443 | grep LISTEN
+```
+
+
 
 
 
