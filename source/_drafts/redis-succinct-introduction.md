@@ -72,7 +72,7 @@ PONG
 $ redis-cli
 Could not connect to Redis at 127.0.0.1:6379: Connection refused
 ```
-
+原因: 可能是 redis-server 还未启动.
 
 
 
