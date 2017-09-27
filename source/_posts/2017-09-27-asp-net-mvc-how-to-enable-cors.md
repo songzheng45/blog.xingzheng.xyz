@@ -11,7 +11,7 @@ updated: 2017-09-27 17:24:15
 
 浏览器出于安全性考虑, 会阻止 AJAX 请求其他域名下的资源. 这个限制叫作 `same-origin`(同源) 策略.  
 
-### 什么是同源?
+## 什么是同源?
 如果两个 URL 有相同的scheme、域名和端口, 他们就有相同的来源.
 
 以下两个 URL 是同源的:
@@ -27,7 +27,9 @@ updated: 2017-09-27 17:24:15
  
 例如, 在 `www.xingzheng.me/books` 页面上通过 AJAX 访问 `www.xingzheng.me/api/blogs` 是没问题的. 但是访问 `api.xingzheng.me/blogs` 就会失败, 浏览器控制台会输出如下错误:
 ```
-XMLHttpRequest cannot load http://api.xingzheng.me/blogs. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.xingzheng.me' is therefore not allowed access.
+XMLHttpRequest cannot load http://api.xingzheng.me/blogs. 
+No 'Access-Control-Allow-Origin' header is present on the requested resource. 
+Origin 'http://www.xingzheng.me' is therefore not allowed access.
 ```
 
 >同源策略不会阻止浏览器发送请求, 但是会阻止应用程序"看到"响应内容.  
@@ -35,18 +37,18 @@ XMLHttpRequest cannot load http://api.xingzheng.me/blogs. No 'Access-Control-All
 
 <!--more-->
 
-### 什么是 CORS
+## 什么是 CORS
 
 [Cross Origin Resource Sharing][1](CORS) 是一个 w3c 标准, 允许服务器放宽 `same-origin` 策略. 使用 CORS , 服务器可以在允许一些"跨源"的请求的同时拒绝其他的请求. CORS 比早期的技术如 JSONP 更安全、更灵活.
 
 ## CORS 是如何工作的?
 
-CORS 规范介绍了几个新的 HTTP 头来允许 `cross-origin` 请求. 如果浏览器支持 CORS , 它会自动设置这些 HTTP 头, 而我们在 Javascrpit 代码中什么也不用做.
+CORS 规范介绍了几个新的 HTTP 头来允许 `cross-origin` 请求. 如果浏览器支持 CORS , 它会自动设置这些 HTTP 头, 我们在 Javascrpit 代码中什么都不用做.
 
 
 例如, 以下是一个跨域请求的请求头信息:
 ```
-GET http://www.caiwu.com/Message/CheckUnreadMessage?ajax=1 HTTP/1.1
+GET http://www.caiwu.com/message.html HTTP/1.1
 Host: www.caiwu.com
 Origin: http://m.caiwu.com
 Accept: */*
@@ -56,7 +58,7 @@ Accept-Language: zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4,en-US;q=0.2
 ```
 `Origin` 的值就是发出请求的域名.
 
-服务服务器如果允许本次请求, 则在响应头中设置 `Access-Control-Allow-Origin` 头, 它的值就是上面 `Origin` 头的值(如果是 `*` 表示允许来自所有的 `origin` 的请求).  
+服务器如果允许本次请求, 则在响应头中设置 `Access-Control-Allow-Origin`, 值就是上面 `Origin` 的值(如果是 `*` 表示允许来自所有 `origin` 的请求, 有很大安全隐患).  
 ```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
@@ -109,32 +111,32 @@ Date: Wed, 05 Jun 2013 06:33:22 GMT
 ### 自定义 ActionFilterAttribute
 ```
 public class AllowCORSAttribute : ActionFilterAttribute
+{
+    public override void OnActionExecuting(ActionExecutingContext filterContext)
     {
-        /// <summary>Called by the ASP.NET MVC framework before the action method executes.</summary>
-        /// <param name="filterContext">The filter context.</param>
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        // 支持多个域名的跨域请求
+        List<string> domains = new List<string>() { "http://domain1.com", "http://domain2.com" };
+        var host = filterContext.HttpContext.Request.UrlReferrer.Host;
+
+
+        var filterHost = domains.FirstOrDefault(x => x.Contains(host));
+        if (filterHost != null)
         {
-            // 支持多个域名的跨域请求
-            List<string> domains = new List<string>() { "http://domain1.com", "http://domain2.com" };
-            var host = filterContext.HttpContext.Request.UrlReferrer.Host;
+            // 允许跨域请求的域名
+            filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", filterHost);
 
-
-            var filterHost = domains.FirstOrDefault(x => x.Contains(host));
-            if (filterHost != null)
-            {
-                // 允许跨域请求的域名
-                filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", filterHost);
-
-                // 如果请求要传递cookie或其他认证方案所需的信息, 需要设置 Access-Control-Allow-Credentials 为 true
-                filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true"); 
-            }
-
-            base.OnActionExecuting(filterContext);
+            // 如果请求要传递cookie或其他认证方案所需的信息, 需要设置 Access-Control-Allow-Credentials 为 true
+            filterContext.HttpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true"); 
         }
+
+        base.OnActionExecuting(filterContext);
     }
-```    
+}
+```
+然后将该过滤器应用到 Action、Controller 或者全局。
 
 ### Web.config 配置 `httpProtocol/customHeaders`
+
 ```xml
 <system.webServer>
   <httpProtocol>
@@ -147,11 +149,15 @@ public class AllowCORSAttribute : ActionFilterAttribute
 </system.webServer>
 ```
 
-
 ## 参考
+### ASP.NET WebAPI 2 启用 CORS
+[Enabling Cross-Origin Requests in ASP.NET Web API 2][2]
 
-[在 ASP.NET WebAPI2 中启用 CORS][2]   
-[在 ASP.NET Core 中启用 CORS][3]
+### ASP.NET Core 启用 CORS
+[Enabling Cross-Origin Requests (CORS)][3]
+
+
+
 
 [1]:http://www.w3.org/TR/cors/
 [2]:https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
