@@ -24,10 +24,10 @@ $ hexo init
 
 ### 新建文章
 ```
-$ hexo new post <title>
+$ hexo new <layout> <title>
 $ hexo new <title>
 ```
-layout 可以省略，默认是 `post`   
+layout 即模板, 可选，如果省略则默认是 `post`, 即新建文章.   
 存放路径在： `source/_posts`。
 
 <!--more--> 
@@ -47,34 +47,50 @@ $ hexo publish [layout] <title>
 ```
 $ hexo new page <title>
 ```
-如 `hexo new page "tags"` 新建`tags`页面，页面位置在：`source/tags`。
+如 `hexo new page "tags"` 新建`tags`页面，路径在：`source/tags`。
 
 ### 修改默认布局
-修改`_config.yml`中的`default_layout`配置项，修改为 `scaffolds/`下的某个某个布局文件名。
+修改`_config.yml`中的`default_layout`配置项，修改为 `scaffolds/`下的某个布局文件名即可。
 
-### 启动本地服务器
+### Hexo Server
+参考: [Hexo Server][1]
+
+Hexo 3.0 把服务器独立成了个别模块，必须先安装 hexo-server 才能使用。
+```
+$ npm install hexo-server --save
+```
+
+安装完成后，输入以下命令以启动服务器，您的网站会在 http://localhost:4000 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，您无须重启服务器。
 ```
 $ hexo server
 或
 $ hexo s
 ```
-默认地址：`http://localhost:4000/`  
+>默认端口4000与Foxit Reader(福昕PDF阅读器）foxitprotect.exe占用端口冲突, 如果启动后无法访问, 请修改端口号.
+
+- **自定义端口**
+ `hexo server -p 5000`  
+- **静态模式**
+ `hexo server -s`, 只处理`public`文件夹内的文件,不会处理文件变动, 需要先执行`hexo generate`. 通常用于生产环境下.  
+- **自定义 IP**
+ `hexo server -i 192.168.1.1`
 
 ### 部署
 ```
 $ hexo deploy
 ```
-可选项：`-g, --generate`，在部署前生成
+可选项：`-g, --generate`，在部署前生成文件.
 
 ### 其他选项
 - 调试模式
 ```
 $ hexo --debug
 ```
-- 显式草稿
+- 显示草稿
 ```
 $ hexo --draft
 ```
+例如, `hexo server --draft` 会启动 Hexo Server 来预览草稿.
 
 参考：[Hexo概述](https://hexo.io/zh-cn/docs/index.html)
 
@@ -128,3 +144,7 @@ Error: Cannot find module 'hexo-util'
 ``` bash
 npm install hexo-util --save
 ```
+
+
+
+[1]:https://hexo.io/zh-cn/docs/server.html
