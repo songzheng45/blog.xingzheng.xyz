@@ -7,10 +7,10 @@ before_install:
   - git config --global user.email "songheng45@gmail.com"
 
 install:
+  - npm rebuild node-sass
   - npm install hexo-cli -g
   - npm install hexo --save
   - npm install
-  - npm rebuild node-sass
   - npm install hexo-generator-feed --save
   - npm install hexo-deployer-git --save
   - npm install hexo-renderer-ejs2 --save
