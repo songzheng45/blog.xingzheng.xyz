@@ -8,7 +8,6 @@ before_install:
 
 install:
   - npm install -g npm@4
-  - npm cache verify
   - npm install hexo-cli -g
   - npm install hexo --save
   - npm install
