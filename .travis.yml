@@ -4,6 +4,7 @@ npm:
   - "4.6.1"
 
 before_install:
+  - npm install -g npm@4
   - git config --global push.default matching
   - git config --global user.name "songzheng45" 
   - git config --global user.email "songheng45@gmail.com"
