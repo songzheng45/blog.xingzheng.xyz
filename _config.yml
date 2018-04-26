@@ -82,7 +82,6 @@ social:
 algolia:
   applicationID: '6HYIZOHIHG'
   apiKey: '49a85f4066c6c814ec9856d3e9ece026'
-  adminApiKey: '77038fd590591d29e4ea3733ea8e533b'
   indexName: 'xingzheng.me'
   chunkSize: 5000
   fields:
