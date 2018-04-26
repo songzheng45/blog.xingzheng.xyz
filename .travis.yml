@@ -1,19 +1,16 @@
 language: node_js
-node_js: 
-  - "8.11.1"
+node_js: node
 
 before_install: 
-  - npm install npm@4 -g
   - git config --global push.default matching
   - git config --global user.name "songzheng45" 
   - git config --global user.email "songheng45@gmail.com"
 
 install:
-  - npm --version
-  - npm rebuild node-sass 
   - npm install hexo-cli -g
   - npm install hexo --save
   - npm install
+  - npm rebuild node-sass
   - npm install hexo-generator-feed --save
   - npm install hexo-deployer-git --save
   - npm install hexo-renderer-ejs2 --save
