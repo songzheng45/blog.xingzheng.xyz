@@ -8,7 +8,7 @@ before_install:
 
 install:
   - rm -rf node_modules
-  - npm cache clean
+  - npm cache verify
   - npm install hexo-cli -g
   - npm install hexo --save
   - npm install
