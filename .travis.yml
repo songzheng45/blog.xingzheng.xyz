@@ -1,13 +1,13 @@
 language: node_js
 node_js: node
 
-before_install: if [[ `npm -v` != 4* ]]; then npm i -g npm@4; fi
-
-
-install:
+before_install: 
+  - if [[ `npm -v` != 4* ]]; then npm i -g npm@4; fi
   - git config --global push.default matching
   - git config --global user.name "songzheng45" 
   - git config --global user.email "songheng45@gmail.com"
+
+install:
   - npm install hexo-cli -g
   - npm install hexo --save
   - npm install
