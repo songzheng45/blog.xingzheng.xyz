@@ -136,20 +136,23 @@ $ hexo generate
 
 ```yaml
 language: node_js
-node_js: node
+node_js: 
+  - "8.11.1"
 
-before_install:
+before_install: 
+  - npm install -g npm@4
   - git config --global push.default matching
-  - git config --global user.name "john" 
-  - git config --global user.email "john@gmail.com"
+  - git config --global user.name "songzheng45" 
+  - git config --global user.email "songheng45@gmail.com"
 
 install:
+  - npm rebuild node-sass
   - npm install hexo-cli -g
   - npm install hexo --save
   - npm install
   - npm install hexo-generator-feed --save
   - npm install hexo-deployer-git --save
-  - npm install hexo-renderer-ejs --save
+  - npm install hexo-renderer-ejs2 --save
   - npm install hexo-renderer-stylus --save
   - npm install hexo-renderer-marked --save
   - npm install hexo-renderer-sass --save
@@ -165,7 +168,7 @@ after_success:
   - git init
   - git add --all .
   - git commit -m "Travis CI Auto Builder"
-  - git push --quiet --force https://$GH_Token@github.com/john/johnsblog.git master:gh-pages
+  - git push --quiet --force https://$GH_Token@github.com/songzheng45/xingzheng.me.git master:gh-pages
 
 branches:
   only:
@@ -176,40 +179,6 @@ branches:
     #- node_modules
 
 ```
-
-
-
-### Travis 构建问题
-
-1. Cannot download node-sass
-
-   ```bash
-   > node-sass@4.8.3 install /home/travis/build/songzheng45/xingzheng.me/node_modules/node-sass
-   > node scripts/install.js
-
-   Downloading binary from https://github.com/sass/node-sass/releases/download/v4.8.3/linux-x64-64_binding.node
-   Cannot download "https://github.com/sass/node-sass/releases/download/v4.8.3/linux-x64-64_binding.node": 
-
-   HTTP error 404 Not Found
-
-   Hint: If github.com is not accessible in your location
-         try setting a proxy via HTTP_PROXY, e.g. 
-
-         export HTTP_PROXY=http://example.com:1234
-
-   or configure npm proxy via
-
-         npm config set proxy http://example.com:8080
-         
-   ......      
-
-   npm ERR! Failed at the node-sass@4.8.3 postinstall script.
-   ......
-   ```
-
-   node-sass 的一个 issue [Can't install node-sass with NPM 5.0.0][2] 提到该问题，其中一个贡献者说该问题超出了他们能处理的范围，建议将 npm 降级到4.0
-
-
 
 
 
