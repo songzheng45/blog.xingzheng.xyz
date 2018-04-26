@@ -94,7 +94,7 @@ $ hexo --draft
 
 参考：[Hexo概述](https://hexo.io/zh-cn/docs/index.html)
 
-## Next主题
+## Hexo-Next 使用
 ### 创建标签云
 [参考这里](https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E6%A0%87%E7%AD%BE%E4%BA%91%E9%A1%B5%E9%9D%A2)
 
@@ -127,6 +127,57 @@ $ hexo generate
 
 ### 如何在首页开启“阅读更多”
 在文章中加 `<!--more-->` 进行截断。
+
+
+
+## Travis 自动构建 Hexo
+
+`.travis.yml`示例：
+
+```yaml
+language: node_js
+node_js: node
+
+before_install:
+  - git config --global push.default matching
+  - git config --global user.name "john" 
+  - git config --global user.email "john@gmail.com"
+
+install:
+  - npm install hexo-cli -g
+  - npm install hexo --save
+  - npm install
+  - npm install hexo-generator-feed --save
+  - npm install hexo-deployer-git --save
+  - npm install hexo-renderer-ejs --save
+  - npm install hexo-renderer-stylus --save
+  - npm install hexo-renderer-marked --save
+  - npm install hexo-renderer-sass --save
+  - npm install hexo-algolia --save
+
+script:
+  - hexo clean
+  - hexo generate
+  - hexo algolia
+
+after_success:
+  - cd ./public
+  - git init
+  - git add --all .
+  - git commit -m "Travis CI Auto Builder"
+  - git push --quiet --force https://$GH_Token@github.com/john/johnsblog.git master:gh-pages
+
+branches:
+  only:
+    - master
+
+#cache:
+  #directories:
+    #- node_modules
+
+```
+
+
 
 ## 问题
 ### Cannot find module 'hexo-util' 

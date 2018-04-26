@@ -50,3 +50,20 @@ AlgoliaSearchError: Operations quota exceeded, change plan to get more Operation
 ```
 打开[Algolia官网](https://www.algolia.com/)，登录进入Dashboard，发现algolia改版了，必须选择一个付费计划，选择`Go Free`。  
 再次回到travis构建成功。
+
+
+
+### Travis 构建时报错
+
+```bash
+ERROR [Algolia] Please set an `HEXO_ALGOLIA_INDEXING_KEY` environment variable to enable content indexing
+```
+
+解决办法：
+
+在 Travis 构建项目中，依次打开`More Options`-`Settings`，在 `Environment Variables` 下添加一项键值对：
+
+| HEXO_ALGOLIA_INDEXING_KEY | Algolia API KEY |
+| :-----------------------: | :-------------: |
+|                           |                 |
+
