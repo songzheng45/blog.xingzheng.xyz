@@ -1,10 +1,7 @@
 language: node_js
 node_js: node
-npm:
-  - "4.6.1"
 
-before_install:
-  - npm install -g npm@4
+before_install: if [[ `npm -v` != 4* ]]; then npm i -g npm@4; fi
   - git config --global push.default matching
   - git config --global user.name "songzheng45" 
   - git config --global user.email "songheng45@gmail.com"
@@ -16,7 +13,7 @@ install:
   - npm install
   - npm install hexo-generator-feed --save
   - npm install hexo-deployer-git --save
-  - npm install hexo-renderer-ejs --save
+  - npm install hexo-renderer-ejs2 --save
   - npm install hexo-renderer-stylus --save
   - npm install hexo-renderer-marked --save
   - npm install hexo-renderer-sass --save
