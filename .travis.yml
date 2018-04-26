@@ -1,5 +1,6 @@
 language: node_js
-node_js: node
+node_js: 
+  - "8.11.1"
 
 before_install: 
   - npm install npm@4 -g
@@ -9,6 +10,7 @@ before_install:
 
 install:
   - npm --version
+  - npm rebuild node-sass 
   - npm install hexo-cli -g
   - npm install hexo --save
   - npm install
