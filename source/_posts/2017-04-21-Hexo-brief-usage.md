@@ -200,6 +200,11 @@ branches:
    or configure npm proxy via
 
          npm config set proxy http://example.com:8080
+         
+   ......      
+
+   npm ERR! Failed at the node-sass@4.8.3 postinstall script.
+   ......
    ```
 
    node-sass 的一个 issue [Can't install node-sass with NPM 5.0.0][2] 提到该问题，其中一个贡献者说该问题超出了他们能处理的范围，建议将 npm 降级到4.0
