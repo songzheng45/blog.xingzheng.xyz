@@ -1,10 +1,13 @@
 ---
 title: Ubuntu 下安装、卸载 .NET Core
-tags: 
-    - .NET Core
-    - Ubuntu
+tags:
+  - .NET Core
+  - Ubuntu
 category: 技术
+date: 2018-07-09 18:48:41
+updated: 2018-07-09 18:48:41
 ---
+
 
 .NET Core [Get Started with .NET Core][3]
 
