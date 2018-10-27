@@ -81,7 +81,7 @@ social:
 # algolia site serch
 algolia:
   applicationID: 'PN4M01UV5N'
-  apiKey: '3303e1c991318e2f9243ec275194726f'
+  apiKey: 'dbff6e5c0113a2de63f2b2838654f606'
   indexName: 'xingzheng.me'
   chunkSize: 5000
   fields:
