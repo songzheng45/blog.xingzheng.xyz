@@ -77,11 +77,12 @@ ERROR [Algolia] Please set an `HEXO_ALGOLIA_INDEXING_KEY` environment variable t
 | :-----------------------: | :-------------: |
 |                           |                 |
 
-其中 `Algolia API KEY` 填写 Alogolia 网站上生成的 `Search-Only API Key`.
+其中 `Algolia API KEY` 填写 Alogolia 网站上生成的 `Admin Key`, 否则构建时还会报错: `Not enough rights to update an object`.
 
 ### Travis 构建时报错: [Algolia] Invalid Application-ID or API key
 
 解决办法:
 
-原因是我在 Algolia 后台重新生成了 Search-Only Api Key, 需要在环境变量中更新.  
+原因是我在 Algolia 后台重新生成了 Admin Api Key, 需要删除旧的, 重新添加一条.    
+
 具体参考上一个问题.
