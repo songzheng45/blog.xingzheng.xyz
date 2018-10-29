@@ -82,7 +82,7 @@ social:
 algolia:
   applicationID: 'PN4M01UV5N'
   apiKey: 'dbff6e5c0113a2de63f2b2838654f606'
-  indexName: 'xingzheng.me'
+  indexName: 'blog.xingzheng.me'
   chunkSize: 5000
   fields:
     - title
