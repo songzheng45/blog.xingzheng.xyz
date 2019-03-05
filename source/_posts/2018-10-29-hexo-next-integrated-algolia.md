@@ -1,11 +1,14 @@
 ---
 title: Hexo+Next 集成站内搜索 Algolia
-tags: 
-    - Hexo
-    - Next
-    - Algolia
-category: 
+tags:
+  - Hexo
+  - Next
+  - Algolia
+date: 2018-10-29 13:02:13
+updated: 2018-10-29 13:02:13
+category:
 ---
+
 
 ## 注册algolia
 打开[注册页面](https://www.algolia.com/users/sign_up)，选择使用邮箱或者使用Github、Google帐户创建一个帐号。  
@@ -77,12 +80,4 @@ ERROR [Algolia] Please set an `HEXO_ALGOLIA_INDEXING_KEY` environment variable t
 | :-----------------------: | :-------------: |
 |                           |                 |
 
-其中 `Algolia API KEY` 填写 Alogolia 网站上生成的 `Admin Key`, 否则构建时还会报错: `Not enough rights to update an object`.
-
-### Travis 构建时报错: [Algolia] Invalid Application-ID or API key
-
-解决办法:
-
-原因是我在 Algolia 后台重新生成了 Admin Api Key, 需要删除旧的, 重新添加一条.    
-
-具体参考上一个问题.
+其中 `Algolia API KEY`填写 Alogolia 网站上生成的 `Search-Only API Key`.
