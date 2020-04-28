@@ -54,7 +54,7 @@ abp new LearnAbp.BookStore -u app
 
 
 
-<img src="../images/image-20200427094447661.png" alt="image-20200427094447661" style="zoom:50%;" />
+<img src="/images/image-20200427094447661.png" alt="image-20200427094447661" style="zoom:50%;" />
 
 #### 项目依赖图
 
@@ -190,7 +190,7 @@ abp new LearnAbp.BookStore --tiered
 
 创建的解决方案如下图：
 
-<img src="../images/image-20200427185518992.png" alt="image-20200427185518992" style="zoom:50%;" />
+<img src="/images/image-20200427185518992.png" alt="image-20200427185518992" style="zoom:50%;" />
 
 指定`--tiered`选项创建的是一个前后端分离的解决方案，并且多出两个项目`.IdentityServer`和`.HttpApi.Host`。
 
