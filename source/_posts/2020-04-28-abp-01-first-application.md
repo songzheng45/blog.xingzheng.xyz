@@ -1,9 +1,12 @@
 ---
 title: 第一个 ABP vNext 程序（基于启动模板）
-tags: 
-    - abp
+tags:
+  - abp
 category: 技术
+date: 2020-04-28 14:25:23
+updated: 2020-04-28 14:25:23
 ---
+
 
 [ABP vNext](https://abp.io/) 是 ASP.NET Boilerplate 的下一代 Web 应用框架（详见博客[Introducing the ABP vNext](https://blog.abp.io/abp/Abp-vNext-Announcement)），它具有完整的架构和强大的基础设施用于快速开发现代化的 Web 应用。遵循最佳实践与惯例可以为你提供一个一致的（SOLID ）开发体验。
 相关链接:
