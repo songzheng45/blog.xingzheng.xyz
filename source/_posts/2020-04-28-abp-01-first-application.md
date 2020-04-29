@@ -64,9 +64,9 @@ abp new LearnAbp.BookStore -u app
 
 共享层。
 
-包含常量、枚举和其它对象，它们是领域层的一部分，但是需要被所有层（项目）使用。
+包含常量、枚举和其它对象，它们是领域层的一部分。
 
-该项目没有对其它任何项目的引用，但是被所有其它项目直接或间接引用。
+该项目不引用任何其它项目，但是被所有其它项目直接或间接引用。
 
 #### .Domain
 
@@ -84,23 +84,25 @@ abp new LearnAbp.BookStore -u app
 
 例如： `IBookAppService`和`BookCreationDto`
 
-它依赖`.Domain.Shared`，因为它可能使用常量、枚举和其它共享对象。
+依赖关系：
+
+- 依赖`.Domain.Shared`，因为它可能使用常量、枚举和其它共享对象。
 
 ####  .Application
 
 应用层。
 
-包含定义在`.Application.Contracts`中接口的实现。
+包含定义在`.Application.Contracts`中的接口的实现。
 
 例如：`BookAppService`实现接口`IBookAppService`,并依赖`.Domain`项目来使用实体和领域对象来执行业务逻辑。
 
 ####  .EntityFrameworkCore
 
- EF Core 集成层。
+集成 EF Core。
 
-定义`DbContext`并实现定义在`.Domain`中的仓库接口。
+定义 `DbContext` 并实现定义在 `.Domain` 中的仓库接口。
 
-只有当你使用 EF Core 作为数据提供者的时候，该项目才有用。如果数据源用的是 MongoDB、Dapper 等等，该项目的名字和实现也会不同。
+只有当使用 EF Core 作为数据提供者的时候，该项目才有用。如果数据源用的是 MongoDB、Dapper 等等，该项目的名字和实现也会不同。
 
 #### .EntityFrameworkCore.DbMigrations
 
@@ -108,7 +110,7 @@ EF Core 数据库迁移层。
 
 它有一个单独的`DbContext`专门用于管理迁移。
 
-ABP 是一个具有理想化设计的模块化框架，每个模块（module）有它自己的`DbContext`类。基于此，用于迁移的`DbContext`把所有`DbContext`配置整合到一个单独的 model 里来维护同一个数据库结构。
+ABP 是一个具有理想设计的模块化框架，每个模块（module）有它自己的`DbContext`类。基于此，用于迁移的`DbContext`把所有`DbContext`配置整合到一个单独的 model 里来维护同一个数据库结构。
 
 在高级场景中，我们可以有多个数据库和多个迁移`DbContext`类。
 
@@ -120,25 +122,27 @@ ABP 是一个具有理想化设计的模块化框架，每个模块（module）�
 
 依赖关系：
 
-它依赖`.EntityFrameworkCore`，因为它重用应用程序里为`DbContext`定义的通用配置。
+- 依赖`.EntityFrameworkCore`，因为它重用应用程序里为`DbContext`定义的通用配置。
 
 #### .DbMigrator
 
-控制台程序，用来简化在开发、生产环境的数据库迁移。
+控制台程序，用来简化在开发和生产环境的数据库迁移。
 
-- 必需时创建数据库
+它做了以下几件事：
+
+- 在必要时创建数据库
 - 应用还未生效的迁移更改
-- 需要时插入初始数据
+- 需要时填充种子数据
 
-特别地，初始种子数据在这里很重要。ABP 框架具有模块化的初始种子数据架构，详细可以[查看文档](https://docs.abp.io/en/abp/latest/Data-Seeding)。
+特别地，填充种子数据在这里很重要。ABP 框架具有模块化的架构去填充种子数据，详细可以[查看文档](https://docs.abp.io/en/abp/latest/Data-Seeding)。
 
-该程序不仅可用于关系型数据库，也可用于为 NoSQL 数据库初始种子数据。
+该程序不仅可用于关系型数据库，也可用于为 NoSQL 数据库填充种子数据。
 
 依赖关系：
 
-- 依赖`.EntityFrameworkCore.DbMigrations`并访问定义其中的迁移。
+- 依赖`.EntityFrameworkCore.DbMigrations`并访问定义其中的迁移
 
-- 依赖`.Application.Contracts`因此可以访问权限定义，默认授权 admin 所有权限。
+- 依赖`.Application.Contracts`因此可以访问权限定义，默认授权 *admin* 所有权限
 
 #### .HttpApi
 
@@ -196,13 +200,13 @@ abp new LearnAbp.BookStore --tiered
 
 #### .IdentityServer
 
-作为其它项目的认证服务。
+作为认证服务器被其它项目使用。
 
-`.Web`项目通过 *OpenId Connect Authentication* 从 IdentityServer 为当前用户获取 ID 和 access token，然后使用访问 token 去调用 HTTP API 服务。HTTP API 服务使用 bearer token 认证方式从 access token 中提取声明以授权当前用户。
+`.Web`项目通过 *OpenId Connect Authentication* 从 IdentityServer 为当前用户获取 ID 和 access token，然后使用access token 去调用 HTTP API 服务。HTTP API 服务使用 bearer token 认证方式从 access token 中提取声明以授权当前用户。
 
 ![](https://raw.githubusercontent.com/abpframework/abp/master/docs/en/images/tiered-solution-applications.png)
 
-ABP 使用开源的 [IdentityServer4](https://identityserver.io/) 框架在应用程序之间做认证，具体看[IdentityServer4 documentation](http://docs.identityserver.io/) 了解IdentityServer4 和 OpenID Connect 协议。
+ABP 使用开源的 [IdentityServer4](https://identityserver.io/) 框架在应用程序之间做认证，具体看[IdentityServer4 文档](http://docs.identityserver.io/) 了解IdentityServer4 和 OpenID Connect 协议。
 
 #### .HttpApi.Host
 
