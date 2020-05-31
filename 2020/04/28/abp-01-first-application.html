@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="abp," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="ABP vNext 是 ASP.NET Boilerplate 的下一代 Web 应用框架（详见博客Introducing the ABP vNext），它具有完整的架构和强大的基础设施用于快速开发现代化的 Web 应用。遵循最佳实践与惯例可以为你提供一个一致的（SOLID ）开发体验。相关链接:  GitHub 官方文档： 英 &#x2F; 中  新建一个 ABP 应用有两种方式：基于启动模板，或者从空项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一个 ABP vNext 程序（基于启动模板）">
+<meta property="og:url" content="http://blog.xingzheng.top/2020/04/28/abp-01-first-application.html">
+<meta property="og:site_name" content="Just Do It">
+<meta property="og:description" content="ABP vNext 是 ASP.NET Boilerplate 的下一代 Web 应用框架（详见博客Introducing the ABP vNext），它具有完整的架构和强大的基础设施用于快速开发现代化的 Web 应用。遵循最佳实践与惯例可以为你提供一个一致的（SOLID ）开发体验。相关链接:  GitHub 官方文档： 英 &#x2F; 中  新建一个 ABP 应用有两种方式：基于启动模板，或者从空项">
+<meta property="og:image" content="http://blog.xingzheng.top/images/image-20200427094447661.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/abpframework/abp/master/docs/en/images/layered-project-dependencies.png">
+<meta property="og:image" content="http://blog.xingzheng.top/images/image-20200427185518992.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/abpframework/abp/master/docs/en/images/tiered-solution-applications.png">
+<meta property="article:published_time" content="2020-04-28T14:25:23.000Z">
+<meta property="article:modified_time" content="2020-04-28T14:25:23.000Z">
+<meta property="article:author" content="T羚羊">
+<meta property="article:tag" content="abp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.xingzheng.top/images/image-20200427094447661.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PN4M01UV5N',
+      apiKey: 'dbff6e5c0113a2de63f2b2838654f606',
+      indexName: 'blog.xingzheng.me',
+      hits: {"per_page":15},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.xingzheng.top/2020/04/28/abp-01-first-application.html"/>
+
+
+
+
+
+  <title>第一个 ABP vNext 程序（基于启动模板） | Just Do It</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-97888598-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2045c6955a2f216146dd08378ea8d802";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Just Do It" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just Do It</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.xingzheng.top/2020/04/28/abp-01-first-application.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="T羚羊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just Do It">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">第一个 ABP vNext 程序（基于启动模板）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T14:25:23+00:00">
+                2020-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/28/abp-01-first-application.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/04/28/abp-01-first-application.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://abp.io/" target="_blank" rel="noopener">ABP vNext</a> 是 ASP.NET Boilerplate 的下一代 Web 应用框架（详见博客<a href="https://blog.abp.io/abp/Abp-vNext-Announcement" target="_blank" rel="noopener">Introducing the ABP vNext</a>），它具有完整的架构和强大的基础设施用于快速开发现代化的 Web 应用。遵循最佳实践与惯例可以为你提供一个一致的（SOLID ）开发体验。<br>相关链接:</p>
+<ul>
+<li><a href="https://github.com/abpframework/abp" target="_blank" rel="noopener">GitHub</a></li>
+<li>官方文档： <a href="https://docs.abp.io/en/abp/latest" target="_blank" rel="noopener">英</a> / <a href="https://docs.abp.io/zh-Hans/abp/latest/" target="_blank" rel="noopener">中</a></li>
+</ul>
+<p>新建一个 ABP 应用有两种方式：基于启动模板，或者从空项目开始。本文总结创建基于启动模板的解决方案，并说明每个项目的作用。</p>
+<p>话不多说，我们马上开始创建第一个 ABP vNext 应用吧。</p>
+<a id="more"></a>
+<h2 id="安装-ABP-CLI-命令"><a href="#安装-ABP-CLI-命令" class="headerlink" title="安装 ABP CLI 命令"></a>安装 ABP CLI 命令</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet tool install <span class="literal">-g</span> Volo.Abp.Cli</span><br></pre></td></tr></table></figure>
+<p>执行成功后就可以执行 <code>abp new</code> 命令创建指定模板的解决方案。</p>
+<blockquote>
+<p>macOS 下利用 zsh 安装后，可能会提示 <code>zsh: command not found: abp</code>，解决办法如下：</p>
+<p>编辑<code>~/.zshrc</code>，将<code>~/.dotnet/tools</code>添加到PATH 中：</p>
+<p><code>export PATH=$HOME/.dotnet/tools:$PATH</code></p>
+</blockquote>
+<h2 id="解决方案结构"><a href="#解决方案结构" class="headerlink" title="解决方案结构"></a>解决方案结构</h2><h3 id="默认结构"><a href="#默认结构" class="headerlink" title="默认结构"></a>默认结构</h3><p>如果不指定UI 框架，或未指定<code>--tiered</code>选项，则默认创建一个 ASP.NET Core MVC Razor Pages 项目：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abp new LearnAbp.BookStore</span><br></pre></td></tr></table></figure>
+<p>等价于：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abp new LearnAbp.BookStore -u app</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20200427094447661.png" alt="image-20200427094447661" style="zoom:50%;" /></p>
+<h4 id="项目依赖图"><a href="#项目依赖图" class="headerlink" title="项目依赖图"></a>项目依赖图</h4><p><img src="https://raw.githubusercontent.com/abpframework/abp/master/docs/en/images/layered-project-dependencies.png" alt=""></p>
+<h4 id="Domain-Shared"><a href="#Domain-Shared" class="headerlink" title=".Domain.Shared"></a>.Domain.Shared</h4><p>共享层。</p>
+<p>包含常量、枚举和其它对象，它们是领域层的一部分。</p>
+<p>该项目不引用任何其它项目，但是被所有其它项目直接或间接引用。</p>
+<h4 id="Domain"><a href="#Domain" class="headerlink" title=".Domain"></a>.Domain</h4><p>领域层。</p>
+<p>主要包含实体（entities）、聚合根（aggregate roots）、领域服务（domain services）、值类型（value types）、仓库接口（repositories interfaces）和其它领域对象。</p>
+<h4 id="Application-Contracts"><a href="#Application-Contracts" class="headerlink" title=".Application.Contracts"></a>.Application.Contracts</h4><p>应用契约（接口）层。</p>
+<p>主要包含应用服务（application services）接口和 应用层的DTO（Data Transfer Object）类。</p>
+<p>它存在作用是分离应用层的接口和实现，因此它能作为一个契约包分享给客户端。</p>
+<p>例如： <code>IBookAppService</code>和<code>BookCreationDto</code></p>
+<p>依赖关系：</p>
+<ul>
+<li>依赖<code>.Domain.Shared</code>，因为它可能使用常量、枚举和其它共享对象。</li>
+</ul>
+<h4 id="Application"><a href="#Application" class="headerlink" title=".Application"></a>.Application</h4><p>应用层。</p>
+<p>包含定义在<code>.Application.Contracts</code>中的接口的实现。</p>
+<p>例如：<code>BookAppService</code>实现接口<code>IBookAppService</code>,并依赖<code>.Domain</code>项目来使用实体和领域对象来执行业务逻辑。</p>
+<h4 id="EntityFrameworkCore"><a href="#EntityFrameworkCore" class="headerlink" title=".EntityFrameworkCore"></a>.EntityFrameworkCore</h4><p>集成 EF Core。</p>
+<p>定义 <code>DbContext</code> 并实现定义在 <code>.Domain</code> 中的仓库接口。</p>
+<p>只有当使用 EF Core 作为数据提供者的时候，该项目才有用。如果数据源用的是 MongoDB、Dapper 等等，该项目的名字和实现也会不同。</p>
+<h4 id="EntityFrameworkCore-DbMigrations"><a href="#EntityFrameworkCore-DbMigrations" class="headerlink" title=".EntityFrameworkCore.DbMigrations"></a>.EntityFrameworkCore.DbMigrations</h4><p>EF Core 数据库迁移层。</p>
+<p>它有一个单独的<code>DbContext</code>专门用于管理迁移。</p>
+<p>ABP 是一个具有理想设计的模块化框架，每个模块（module）有它自己的<code>DbContext</code>类。基于此，用于迁移的<code>DbContext</code>把所有<code>DbContext</code>配置整合到一个单独的 model 里来维护同一个数据库结构。</p>
+<p>在高级场景中，我们可以有多个数据库和多个迁移<code>DbContext</code>类。</p>
+<blockquote>
+<p>注意：</p>
+<p>迁移<code>DbContext</code>仅用作数据库迁移，而不会在程序运行时调用。</p>
+</blockquote>
+<p>依赖关系：</p>
+<ul>
+<li>依赖<code>.EntityFrameworkCore</code>，因为它重用应用程序里为<code>DbContext</code>定义的通用配置。</li>
+</ul>
+<h4 id="DbMigrator"><a href="#DbMigrator" class="headerlink" title=".DbMigrator"></a>.DbMigrator</h4><p>控制台程序，用来简化在开发和生产环境的数据库迁移。</p>
+<p>它做了以下几件事：</p>
+<ul>
+<li>在必要时创建数据库</li>
+<li>应用还未生效的迁移更改</li>
+<li>需要时填充种子数据</li>
+</ul>
+<p>特别地，填充种子数据在这里很重要。ABP 框架具有模块化的架构去填充种子数据，详细可以<a href="https://docs.abp.io/en/abp/latest/Data-Seeding" target="_blank" rel="noopener">查看文档</a>。</p>
+<p>该程序不仅可用于关系型数据库，也可用于为 NoSQL 数据库填充种子数据。</p>
+<p>依赖关系：</p>
+<ul>
+<li><p>依赖<code>.EntityFrameworkCore.DbMigrations</code>并访问定义其中的迁移</p>
+</li>
+<li><p>依赖<code>.Application.Contracts</code>因此可以访问权限定义，默认授权 <em>admin</em> 所有权限</p>
+</li>
+</ul>
+<h4 id="HttpApi"><a href="#HttpApi" class="headerlink" title=".HttpApi"></a>.HttpApi</h4><p>自定义 API Controller。</p>
+<p>大多时候我们不需要定义API Controller，因为 ABP 框架 <a href="https://docs.abp.io/en/abp/latest/API/Auto-API-Controllers" target="_blank" rel="noopener">Auto API Controller</a>特性会基于应用程序分层自动创建它们。</p>
+<p>依赖关系：</p>
+<ul>
+<li>依赖<code>.Application.Contracts</code>以注入应用服务接口。</li>
+</ul>
+<h4 id="HttpApi-Client"><a href="#HttpApi-Client" class="headerlink" title=".HttpApi.Client"></a>.HttpApi.Client</h4><p>C#客户端代理，用来访问解决方案里的 HTTP API，并可以分享给第三方客户，为他们访问 HTTP API 提供方便。</p>
+<p>由于<a href="https://docs.abp.io/en/abp/latest/API/Dynamic-CSharp-API-Clients" target="_blank" rel="noopener">Dynamic C# API Clients</a>，大多时候我们无需手动创建C#客户端代理。</p>
+<blockquote>
+<p><code>.HttpApi.Client.ConsoleTestApp</code>项目演示如何使用这个客户端代理。</p>
+</blockquote>
+<p>依赖关系：</p>
+<ul>
+<li>依赖<code>.Application.Contracts</code>以共享远程服务使用的接口和 DTO 类。</li>
+</ul>
+<blockquote>
+<p>不需要的话可以删掉该项目。</p>
+</blockquote>
+<h4 id="Web"><a href="#Web" class="headerlink" title=".Web"></a>.Web</h4><p>该项目是 ASP.NET Core MVC UI 层，包含Razor Pages，JavaScript 文件，CSS 文件等等。</p>
+<p>该项目包含主要的<code>appsettings.json</code>文件，包含数据库连接字符串以及其它程序配置项。</p>
+<p>依赖关系：</p>
+<ul>
+<li>依赖<code>.HttpApi</code>，因为UI 层需要使用 API和应用程序接口。</li>
+</ul>
+<blockquote>
+<p>该项目引用了<code>.Application</code>和<code>.EntityFrameworkCore.DbMigrations</code>两个项目，而实际上这两个引用在 UI 层是不需要的，因为 UI 通常并不依赖于 EF Core 和 Application 层的实现。</p>
+<p>这是由于创建解决方案时没有指定<code>--tiered</code>选项，因此<code>.Web</code>项目在单个服务里托管 UI，API和应用层。</p>
+<p>总的来说，这种结构不符合 DDD 最佳实践，应该在展示层可以直接使用Domain Entity和仓储。</p>
+</blockquote>
+<p>接下来看分层结构。</p>
+<h3 id="分层结构"><a href="#分层结构" class="headerlink" title="分层结构"></a>分层结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abp new LearnAbp.BookStore --tiered</span><br></pre></td></tr></table></figure>
+<p>创建的解决方案如下图：</p>
+<p><img src="/images/image-20200427185518992.png" alt="image-20200427185518992" style="zoom:50%;" /></p>
+<p>指定<code>--tiered</code>选项创建的是一个前后端分离的解决方案，并且多出两个项目<code>.IdentityServer</code>和<code>.HttpApi.Host</code>。</p>
+<h4 id="IdentityServer"><a href="#IdentityServer" class="headerlink" title=".IdentityServer"></a>.IdentityServer</h4><p>作为认证服务器被其它项目使用。</p>
+<p><code>.Web</code>项目通过 <em>OpenId Connect Authentication</em> 从 IdentityServer 为当前用户获取 ID 和 access token，然后使用access token 去调用 HTTP API 服务。HTTP API 服务使用 bearer token 认证方式从 access token 中提取声明以授权当前用户。</p>
+<p><img src="https://raw.githubusercontent.com/abpframework/abp/master/docs/en/images/tiered-solution-applications.png" alt=""></p>
+<p>ABP 使用开源的 <a href="https://identityserver.io/" target="_blank" rel="noopener">IdentityServer4</a> 框架在应用程序之间做认证，具体看<a href="http://docs.identityserver.io/" target="_blank" rel="noopener">IdentityServer4 文档</a> 了解IdentityServer4 和 OpenID Connect 协议。</p>
+<h4 id="HttpApi-Host"><a href="#HttpApi-Host" class="headerlink" title=".HttpApi.Host"></a>.HttpApi.Host</h4><p>托管 HTTP API。</p>
+<p>它有自己的<code>appsettings.json</code>来存放数据库连接和其它配置。</p>
+<h4 id="Web-1"><a href="#Web-1" class="headerlink" title=".Web"></a>.Web</h4><p>托管 UI，和默认结构里的一样。</p>
+<p>不过这个<code>.Web</code>的<code>appsettings.json</code>不再需要连接数据库的配置，而是存放远程 API 和认证服务的地址。</p>
+<h4 id="如何运行？"><a href="#如何运行？" class="headerlink" title="如何运行？"></a>如何运行？</h4><ol>
+<li>启动 <code>.IdentityServer</code>，因为其他程序依赖它</li>
+<li>启动 <code>.HttpApi.Host</code> ，因为它被<code>.Web</code>调用</li>
+<li>启动 <code>.Web</code> 并登入系统</li>
+</ol>
+<h3 id="Angular-UI"><a href="#Angular-UI" class="headerlink" title="Angular UI"></a>Angular UI</h3><p>如果选择 <code>Angular</code> 作为 UI 框架</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abp new LearnAbp.BookStore -u angular</span><br></pre></td></tr></table></figure>
+<p>解决方案会被分成三个文件夹：</p>
+<ul>
+<li><code>angular</code> 包含 Angular UI 程序，作为前端代码</li>
+<li><code>aspnet-core</code> 包含 ASP.NET Core 解决方案，作为服务的代码</li>
+<li><code>react-native</code> 包含 React Native UI 程序，作为移动端的前端代码</li>
+</ul>
+<p>服务端代码和上面介绍的类似，不过不再有<code>.Web</code>项目。<code>*.HttpApi.Host</code>项目托管 HTTP API， <code>Angular</code>调用它。</p>
+<p>项目结构详细说明，可参考官方文档： <a href="https://docs.abp.io/en/abp/latest/Startup-Templates/Application#angular-ui" target="_blank" rel="noopener">Angular UI</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/abp/" rel="tag"># abp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/29/hexo-next-integrated-algolia.html" rel="next" title="Hexo+Next 集成站内搜索 Algolia">
+                <i class="fa fa-chevron-left"></i> Hexo+Next 集成站内搜索 Algolia
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/04/abp-vnext-swithch-to-mysql.html" rel="prev" title="ABP vNext 切换数据库为 MySQL">
+                ABP vNext 切换数据库为 MySQL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="T羚羊" />
+          <p class="site-author-name" itemprop="name">T羚羊</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/songzheng45" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-ABP-CLI-命令"><span class="nav-number">1.</span> <span class="nav-text">安装 ABP CLI 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案结构"><span class="nav-number">2.</span> <span class="nav-text">解决方案结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认结构"><span class="nav-number">2.1.</span> <span class="nav-text">默认结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目依赖图"><span class="nav-number">2.1.1.</span> <span class="nav-text">项目依赖图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Domain-Shared"><span class="nav-number">2.1.2.</span> <span class="nav-text">.Domain.Shared</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Domain"><span class="nav-number">2.1.3.</span> <span class="nav-text">.Domain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Application-Contracts"><span class="nav-number">2.1.4.</span> <span class="nav-text">.Application.Contracts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Application"><span class="nav-number">2.1.5.</span> <span class="nav-text">.Application</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EntityFrameworkCore"><span class="nav-number">2.1.6.</span> <span class="nav-text">.EntityFrameworkCore</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EntityFrameworkCore-DbMigrations"><span class="nav-number">2.1.7.</span> <span class="nav-text">.EntityFrameworkCore.DbMigrations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DbMigrator"><span class="nav-number">2.1.8.</span> <span class="nav-text">.DbMigrator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpApi"><span class="nav-number">2.1.9.</span> <span class="nav-text">.HttpApi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpApi-Client"><span class="nav-number">2.1.10.</span> <span class="nav-text">.HttpApi.Client</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web"><span class="nav-number">2.1.11.</span> <span class="nav-text">.Web</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分层结构"><span class="nav-number">2.2.</span> <span class="nav-text">分层结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IdentityServer"><span class="nav-number">2.2.1.</span> <span class="nav-text">.IdentityServer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpApi-Host"><span class="nav-number">2.2.2.</span> <span class="nav-text">.HttpApi.Host</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">.Web</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何运行？"><span class="nav-number">2.2.4.</span> <span class="nav-text">如何运行？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-UI"><span class="nav-number">2.3.</span> <span class="nav-text">Angular UI</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">T羚羊</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://xingzheng.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.xingzheng.top/2020/04/28/abp-01-first-application.html';
+          this.page.identifier = '2020/04/28/abp-01-first-application.html';
+          this.page.title = '第一个 ABP vNext 程序（基于启动模板）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xingzheng.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

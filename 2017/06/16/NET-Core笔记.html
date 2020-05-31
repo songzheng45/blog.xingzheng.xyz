@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ASP.NET Core," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="什么是 .NET Core 和 ASP.NET Core.NET Core.NET Core 是一个模块化、跨平台、云优化的 .NET Framework 版本，可将 .NET Core 看作是 .NET Framework 在 .NET Framework 基类库 (BCL) 的跨平台版本，它实现 .NET Standard 规范。 .NET Core 包含 一个.NET 运行时，一组框架库，.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASP.NET Core 笔记">
+<meta property="og:url" content="http://blog.xingzheng.top/2017/06/16/NET-Core%E7%AC%94%E8%AE%B0.html">
+<meta property="og:site_name" content="Just Do It">
+<meta property="og:description" content="什么是 .NET Core 和 ASP.NET Core.NET Core.NET Core 是一个模块化、跨平台、云优化的 .NET Framework 版本，可将 .NET Core 看作是 .NET Framework 在 .NET Framework 基类库 (BCL) 的跨平台版本，它实现 .NET Standard 规范。 .NET Core 包含 一个.NET 运行时，一组框架库，.">
+<meta property="article:published_time" content="2017-06-16T12:34:54.000Z">
+<meta property="article:modified_time" content="2017-06-16T12:34:54.000Z">
+<meta property="article:author" content="T羚羊">
+<meta property="article:tag" content="ASP.NET Core">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PN4M01UV5N',
+      apiKey: 'dbff6e5c0113a2de63f2b2838654f606',
+      indexName: 'blog.xingzheng.me',
+      hits: {"per_page":15},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.xingzheng.top/2017/06/16/NET-Core笔记.html"/>
+
+
+
+
+
+  <title>ASP.NET Core 笔记 | Just Do It</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-97888598-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2045c6955a2f216146dd08378ea8d802";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Just Do It" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just Do It</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.xingzheng.top/2017/06/16/NET-Core%E7%AC%94%E8%AE%B0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="T羚羊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just Do It">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ASP.NET Core 笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-16T12:34:54+00:00">
+                2017-06-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/16/NET-Core%E7%AC%94%E8%AE%B0.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/16/NET-Core笔记.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是-NET-Core-和-ASP-NET-Core"><a href="#什么是-NET-Core-和-ASP-NET-Core" class="headerlink" title="什么是 .NET Core 和 ASP.NET Core"></a>什么是 .NET Core 和 ASP.NET Core</h2><h3 id="NET-Core"><a href="#NET-Core" class="headerlink" title=".NET Core"></a>.NET Core</h3><p>.NET Core 是一个模块化、跨平台、云优化的 .NET Framework 版本，可将 .NET Core 看作是 .NET Framework 在 .NET Framework 基类库 (BCL) 的跨平台版本，它实现 <a href="https://docs.microsoft.com/zh-cn/dotnet/standard/net-standard" target="_blank" rel="noopener">.NET Standard</a> 规范。</p>
+<p>.NET Core 包含 一个.NET <a href="https://github.com/dotnet/coreclr" target="_blank" rel="noopener">运行时</a>，一组<a href="https://github.com/dotnet/corefx" target="_blank" rel="noopener">框架库</a>，.NET Core SDK 和 “dotnet” 应用主机。</p>
+<p>目前正式版是 <a href="https://github.com/dotnet/core/blob/master/release-notes/download-archives/2.0.7-download.md" target="_blank" rel="noopener">.NET Core 2.0.7</a>，包含<code>.NET Core Runtime 2.0.7</code> 和<code>.NET Core SDK 2.1.105</code> ，实现 .NET Standard 2.0规范。 </p>
+<p>它的一个主要特性是，只需要为构建的应用程序安装需要的特性，减少耦合度。这使在同一台机器上不同版本的程序共存成为可能，而且没有兼容性问题。</p>
+<h3 id="ASP-NET-Core"><a href="#ASP-NET-Core" class="headerlink" title="ASP.NET Core"></a>ASP.NET Core</h3><p>ASP.NET Core 是对 ASP.NET 的完全重写，基于 OWIN ，目标是成为跨平台、完全开源、没有向后兼容限制的框架。  </p>
+<h2 id="从CLI开始"><a href="#从CLI开始" class="headerlink" title="从CLI开始"></a>从CLI开始</h2><p><a href="https://docs.microsoft.com/en-us/dotnet/core/tools/" target="_blank" rel="noopener">CLI (command line interface)</a>  </p>
+<ul>
+<li><code>new</code>, to create a new .NET Core project.</li>
+<li><code>restore</code>, to download all dependencies from NuGet.</li>
+<li><code>build</code>, to compile the projects.</li>
+<li><code>publish</code>, to generate a self-contained folder used for deployment.</li>
+<li><code>run</code>, to run a project, building it if it’s not already built.</li>
+<li><code>pack</code>, to package the project as a NuGet package.</li>
+<li><code>msbuild</code>, used as a proxy for the standard MSBuild command. </li>
+<li><code>add package</code> &lt;PACKAGE_NAME&gt;, Adds a package reference to a project file</li>
+</ul>
+<p>.NET Core 支持许多不同的操作系统，但是每个操作系统都有一个特定的标志：Runtime IDentifier（RID），格式是：<code>[os].[version]-[arch] (e.g, osx.10.11-x64)</code>。</p>
+<a id="more"></a>
+<h2 id="ASP-NET-Core-1"><a href="#ASP-NET-Core-1" class="headerlink" title="ASP.NET Core"></a>ASP.NET Core</h2><h3 id="启动-Web-App"><a href="#启动-Web-App" class="headerlink" title="启动 Web App"></a>启动 Web App</h3><h4 id="Program-cs"><a href="#Program-cs" class="headerlink" title="Program.cs"></a>Program.cs</h4><h4 id="Startup-cs"><a href="#Startup-cs" class="headerlink" title="Startup.cs"></a>Startup.cs</h4><h2 id="依赖注入-Dependency-Injection"><a href="#依赖注入-Dependency-Injection" class="headerlink" title="依赖注入(Dependency Injection)"></a>依赖注入(Dependency Injection)</h2><p>IoC(Inversion of Control)容器的职责：  </p>
+<ul>
+<li>控制系统中所有对象的创建</li>
+<li>注入正确的依赖</li>
+<li>管理创建的对象的生命线</li>
+</ul>
+<p>有三种方式指定服务的生命周期：  </p>
+<ol>
+<li>Transient<br>用作轻量级的服务，不需要保持任何状态，快速实例化，每次需要时都会创建一个类的新实例。  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">services.AddTransient&lt;IClock,Clock&gt;()</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Scoped<br>一般用在需要保持状态的服务，这些状态只对当前请求有用，像仓储类和数据访问类。<br>作为<code>scoped</code>注册的Services会在请求开始的时候被创建，同一个请求中每次需要这个类的时候都会重用这个实例。  </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">services.AddScoped&lt;IRepository, Repository&gt;()</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Singleton<br>服务作为单例被注册。服务的实例在第一次需要时被创建，在整个应用程序的运行期内都会被重用。这样的Services一般用作保存应用程序状态，就像内存内缓存或类似的方式。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">services.AddSingleton&lt;IApplicationCache, ApplicationCache&gt;()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="使用依赖注入"><a href="#使用依赖注入" class="headerlink" title="使用依赖注入"></a>使用依赖注入</h3><p>使用 ASP.NET Core MVC 需要引入Nuget包 <code>Microsoft.AspNetCore.Mvc</code>。</p>
+<h2 id="环境（Environments）"><a href="#环境（Environments）" class="headerlink" title="环境（Environments）"></a>环境（Environments）</h2><p>每个应用程序都至少要处理至少2个或更多的环境，如开发环境、生产环境，和一些情况下的模拟环境。  </p>
+<h3 id="旧方式"><a href="#旧方式" class="headerlink" title="旧方式"></a>旧方式</h3><p>web.config <strong>IHostingEnvironment</strong>和预处理指令。<br>发生在<strong>编译</strong>阶段。</p>
+<h3 id="新方式"><a href="#新方式" class="headerlink" title="新方式"></a>新方式</h3><p><code>IHostingEnvironment</code> 接口。 </p>
+<p><code>IHostingEnvironment</code> 的实现类读取一个指定的名叫 <code>IHostingEnvironment</code> 的环境变量，并检查它的值。如果是 <strong>Development</strong>，表示运行在开发环境，以此类推。  </p>
+<p>这种方法可以在运行阶段在不同的环境之间切换，而不像旧的方式只能在编译阶段处理。</p>
+<p>Startup类也可以使用约定的命名方式，来配置环境。如当前环境是Development，那么新建一个 <code>StartupDevelopment</code> 类，则 <code>Main</code> 方法中的<code>.UseStartup&lt;Startup&gt;</code>，能自动切换相应的类，只要遵循正确的约定（<u>方法名+环境名</u>）。  </p>
+<p>同样的约定也适用于<code>Startup</code>中的方法，如定义方法<code>ConfigureDevelopment</code>，它同样会在<code>Development</code>环境中替换<code>Configure</code>方法。  </p>
+<h3 id="创建自定义的环境"><a href="#创建自定义的环境" class="headerlink" title="创建自定义的环境"></a>创建自定义的环境</h3><p>比如需要一个<code>QualityAssurance</code>的环境，则可以扩展 <code>IHostingEnvironment</code> 的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">using Microsoft.AspNetCore.Hosting;</span><br><span class="line"></span><br><span class="line">namespace Syncfusion.Asp.Net.Core.Succinctly.Environments.Extensions </span><br><span class="line">&#123;</span><br><span class="line">    public static class HostingEnvironmentExtensions </span><br><span class="line">    &#123;</span><br><span class="line">        public static bool IsQualityAssurance(this IHostingEnvironment hostingEnvironment)</span><br><span class="line">        &#123;</span><br><span class="line">            return hostingEnvironment.EnvironmentName &#x3D;&#x3D; &quot;QualityAssurance&quot;;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><strong><code>IHostingEnvironment</code></strong> 也可以用在视图和配置文件中。  </p>
+<h2 id="静态文件"><a href="#静态文件" class="headerlink" title="静态文件"></a>静态文件</h2><p>引用Nuget包 <code>Microsoft.AspNetCore.StaticFiles</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 使用静态文件，静态文件需要存放在wwwroot文件夹下</span><br><span class="line">app.UseStaticFiles();</span><br></pre></td></tr></table></figure><br>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 一个单页应用里，当访问域名时需要返回默认文档（default.html,default.htm,index.html,index.htm)</span><br><span class="line">&#x2F;&#x2F; 如果不设置UseFileServer，则会显示一个空白页</span><br><span class="line">app.UseFileServer();</span><br></pre></td></tr></table></figure></p>
+<h2 id="错误处理和异常页面"><a href="#错误处理和异常页面" class="headerlink" title="错误处理和异常页面"></a>错误处理和异常页面</h2><p>从某种角度来看，你可以说一个好的应用程序要能够在最短的时间内识别错误并将最好的反馈返回给用户。<br>日志框架、异常处理、自定义错误页面。  </p>
+<h3 id="开发者异常页面"><a href="#开发者异常页面" class="headerlink" title="开发者异常页面"></a>开发者异常页面</h3><p>Nuget包 <code>Microsoft.AspNetCore.Diagnostics</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (_env.IsDevelopment())</span><br><span class="line">&#123;</span><br><span class="line">    app.UseDeveloperExceptionPage(); </span><br><span class="line">&#125; </span><br><span class="line">else </span><br><span class="line">&#123;</span><br><span class="line">    app.UseStatusCodePagesWithRedirects(&quot;~&#x2F;errors&#x2F;&#123;0&#125;.html&quot;); </span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; app.UseStatusCodePagesWithReExecute(&quot;~&#x2F;errors&#x2F;&#123;0&#125;&quot;);     &#x2F;&#x2F; MVC</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置文件（appsettings-json）"><a href="#配置文件（appsettings-json）" class="headerlink" title="配置文件（appsettings.json）"></a>配置文件（appsettings.json）</h2><h3 id="两个规则"><a href="#两个规则" class="headerlink" title="两个规则"></a>两个规则</h3><ul>
+<li><p>规则1： 每个环境单独对应一个json文件<br><code>appsettings.json</code> 和 <code>appsettings.Development.json</code>、<code>appsettings.Production.json</code>。  </p>
+</li>
+<li><p>规则2：每个文件中只写自己独有的配置项<br>ASP.NET Core 会自动合并这些文件，只覆盖在相应环境文件中指定的配置项。  </p>
+</li>
+</ul>
+<p>示例：<br>appsettings.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"database"</span>: &#123;</span><br><span class="line">    <span class="attr">"databaseName"</span>: <span class="string">"my-db-name"</span>,</span><br><span class="line">    <span class="attr">"serverHost"</span>: <span class="string">"mySqlHost"</span>,</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">1433</span>,</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"username"</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="string">"password"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"facebook"</span>: &#123;</span><br><span class="line">    <span class="attr">"appId"</span>: <span class="string">"app-id"</span>,</span><br><span class="line">    <span class="attr">"appSecret"</span>: <span class="string">"app-secret"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"smtp"</span>: &#123;</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"mysuperhost.mysuperdomain.com"</span>,</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"imperugo@gmail.com"</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="string">"my-super-secret-password"</span>,</span><br><span class="line">    <span class="attr">"enableSsl"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">587</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>appsettings.Development.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"database"</span>: &#123;</span><br><span class="line">    <span class="attr">"databaseName"</span>: <span class="string">"my-development-db-name"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>appsettings.Production.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"database"</span>: &#123;</span><br><span class="line">    <span class="attr">"databaseName"</span>: <span class="string">"my-production-db-name"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h3><p>创建一个结构和JSON结构一致的C#类，通过类以更舒服的方式得到配置信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class Configuration</span><br><span class="line">&#123;</span><br><span class="line">    public DatabaseConfiguration Database &#123; get; set; &#125;</span><br><span class="line">    public FacebookConfiguration Facebook &#123; get; set; &#125;</span><br><span class="line">    public SmtpConfiguration SmtpConfiguration &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class DatabaseConfiguration</span><br><span class="line">&#123;</span><br><span class="line">    public string DatabaseName &#123; get; set; &#125;</span><br><span class="line">    public string ServerHost &#123; get; set; &#125;</span><br><span class="line">    public int Port &#123; get; set; &#125;49</span><br><span class="line">    public string Username &#123; get; set; &#125;</span><br><span class="line">    public string Password &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">    public string ConnectionString &#x3D;&gt; $&quot;Server&#x3D;tcp:&#123;ServerHost&#125;,&#123;Port</span><br><span class="line">        &#125;;Database&#x3D;&#123;DatabaseName&#125;;User ID&#x3D;&#123;Username&#125;;Password&#x3D;&#123;Password&#125;;Encrypt&#x3D;</span><br><span class="line">        True;TrustServerCertificate&#x3D;False;Connection Timeout&#x3D;30;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
+<h3 id="初始化配置类的实例"><a href="#初始化配置类的实例" class="headerlink" title="初始化配置类的实例"></a>初始化配置类的实例</h3><p>在<code>Startup</code>类中编写代码，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 需引入以下包</span><br><span class="line">using Microsoft.Extensions.Configuration.EnvironmentVariables</span><br><span class="line">using Microsoft.Extensions.Configuration.FileExtensions</span><br><span class="line">using Microsoft.Extensions.Configuration.Json</span><br><span class="line">using Microsoft.Extensions.Configuration.Binder</span><br><span class="line"></span><br><span class="line">public class Startup</span><br><span class="line">&#123;</span><br><span class="line">    private readonly IConfiguration configuration;</span><br><span class="line"></span><br><span class="line">    public Startup(IConfiguration configuration)</span><br><span class="line">    &#123;</span><br><span class="line">        Configuration &#x3D; configuration;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void ConfigureServices(IServiceCollection services)</span><br><span class="line">    &#123;</span><br><span class="line">        services.Configure&lt;Class&gt;(Configuration);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void Configure(IApplicationBuilder app, IHostingEnvironment env)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 其它代码省略</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="注入配置对象"><a href="#注入配置对象" class="headerlink" title="注入配置对象"></a>注入配置对象</h3><p>将配置类的实例以单例的方式注入，这样可以在应用程序的任何需要配置信息的地方使用，例如Controller、Service等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">using Microsoft.Extensions.Configuration;</span><br><span class="line">using Microsoft.Extensions.Options;</span><br><span class="line"></span><br><span class="line">public class MySimpleService</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 构造器方式注入</span><br><span class="line">    public readonly Configuration _configuration;</span><br><span class="line">    public MySimpleService(IOptions&lt;Configuration&gt; config)</span><br><span class="line">    &#123;</span><br><span class="line">        _configuration &#x3D; config.Value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="日志（Logging）"><a href="#日志（Logging）" class="headerlink" title="日志（Logging）"></a>日志（Logging）</h2><p>ASP.NET Core 提供了日志工具，并且和所有的包都集成了。  </p>
+<h3 id="配置日志"><a href="#配置日志" class="headerlink" title="配置日志"></a>配置日志</h3><p>选择日志的输出方式，例如 <code>console application</code>,<code>trace source</code>,<code>event log</code>。<br>对Kestrel来说，使用控制台输出更有帮助。<br>添加包 <code>Microsoft.Extensions.Logging.Console</code>，如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)</span><br><span class="line">&#123;</span><br><span class="line">    loggerFactory.AddConsole();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>ASP.NET Core 的日志级别有6种，定义在枚举 <code>LogLevel</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public enum LogLevel</span><br><span class="line">&#123;</span><br><span class="line">    Trace &#x3D; 0,</span><br><span class="line">    Debug &#x3D; 1,</span><br><span class="line">    Information &#x3D; 2,</span><br><span class="line">    Warning &#x3D; 3,</span><br><span class="line">    Error &#x3D; 4,</span><br><span class="line">    Critical &#x3D; 5,</span><br><span class="line">    None</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以指定要需要的日志范围，如在生产环境想记录 Warning 或 Error 级别以上的日志，调用 <code>AddConsole</code> 的重载函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Func&lt;string, LogLevel, bool&gt; filter &#x3D; (name, level) &#x3D;&gt; level &gt;&#x3D; LogLevel.Error;</span><br><span class="line">loggerFactory.AddConsole(filter);</span><br></pre></td></tr></table></figure><br>表示日志框架只记录 <code>Error</code> 级别以上的日志。  </p>
+<h3 id="在程序中使用日志"><a href="#在程序中使用日志" class="headerlink" title="在程序中使用日志"></a>在程序中使用日志</h3><p>得益于依赖注入，我们只需要把日志的实例注入到类的构造函数中，就可以使用了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class MyService</span><br><span class="line">&#123;</span><br><span class="line">    private readonly ILogger&lt;MyService&gt; _logger;</span><br><span class="line">    public MyService(ILogger&lt;MyService&gt; logger) </span><br><span class="line">    &#123;</span><br><span class="line">            _logger &#x3D; logger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void DoSomething()</span><br><span class="line">    &#123;</span><br><span class="line">        _logger.LogInformation(&quot;Doing something ...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建自定义的Logger"><a href="#创建自定义的Logger" class="headerlink" title="创建自定义的Logger"></a>创建自定义的Logger</h3><p>参考：<br>Serilog at <a href="https://github.com/serilog/serilog-extensions-logging" target="_blank" rel="noopener">https://github.com/serilog/serilog-extensions-logging</a>.</p>
+<ul>
+<li>Elmah.io at <a href="https://github.com/elmahio/Elmah.Io.Extensions.Logging" target="_blank" rel="noopener">https://github.com/elmahio/Elmah.Io.Extensions.Logging</a>.</li>
+<li>Loggr at <a href="https://github.com/imobile3/Loggr.Extensions.Logging" target="_blank" rel="noopener">https://github.com/imobile3/Loggr.Extensions.Logging</a>.</li>
+<li>NLog at <a href="https://github.com/NLog/NLog.Extensions.Logging" target="_blank" rel="noopener">https://github.com/NLog/NLog.Extensions.Logging</a>.</li>
+<li>Slack at <a href="https://github.com/imperugo/Microsoft.Extensions.Logging.Slack" target="_blank" rel="noopener">https://github.com/imperugo/Microsoft.Extensions.Logging.Slack</a>.</li>
+<li>MongoDb at <a href="https://github.com/imperugo/Microsoft.Extensions.Logging.MongoDb" target="_blank" rel="noopener">https://github.com/imperugo/Microsoft.Extensions.Logging.MongoDb</a>.</li>
+</ul>
+<h2 id="应用程序框架（Application-Framework）"><a href="#应用程序框架（Application-Framework）" class="headerlink" title="应用程序框架（Application Framework）"></a>应用程序框架（Application Framework）</h2><h3 id="WebAPI"><a href="#WebAPI" class="headerlink" title="WebAPI"></a>WebAPI</h3><h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><h4 id="默认路由"><a href="#默认路由" class="headerlink" title="默认路由"></a>默认路由</h4><p><code>Startup.Configure()</code> 中 <code>app.UseMvcWithDefaultRoute();</code>,等价于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.UseMvc(routes &#x3D;&gt;</span><br><span class="line">&#123;</span><br><span class="line">    routes.MapRoute(</span><br><span class="line">        name: &quot;default&quot;,</span><br><span class="line">        template: &quot;&#123;controller&#x3D;Home&#125;&#x2F;&#123;action&#x3D;Index&#125;&#x2F;&#123;id?&#125;&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>ASP.NET Core MVC 的大多用法和之前版本的 ASP.NET MVC 很类似，但是在视图方面有以下新特性：</p>
+<ul>
+<li>TagHelper</li>
+<li>ViewComponent</li>
+</ul>
+<h4 id="TagHelper"><a href="#TagHelper" class="headerlink" title="TagHelper"></a>TagHelper</h4><p>好处是，当增加更多属性时会很清晰。比较以下代码：<br>之前的写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Html.TextBoxFor(m&#x3D;&gt;m.FirstName)</span><br><span class="line">@Html.TextBoxFor(m&#x3D;&gt;m.Email, new &#123; @class &#x3D; &quot;form-control&quot; &#125;)</span><br></pre></td></tr></table></figure><br>TagHelper 的写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input asp-for&#x3D;&quot;FirstName&quot; &#x2F;&gt; </span><br><span class="line">&lt;input asp-for&#x3D;&quot;FirstName&quot; class&#x3D;&quot;form-control&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>还有一些 TagHelper 能够管理缓存，根据不同环境渲染不同的 HTML 元素，管理脚本回调或css文件。默认项目模板的 <code>View\Shared\_Layout.cshtml</code> 下有很多这样的 TagHelper。</p>
+<h5 id="创建自定义-TagHelper"><a href="#创建自定义-TagHelper" class="headerlink" title="创建自定义 TagHelper"></a>创建自定义 TagHelper</h5><p>继承 <code>TagHelper</code> 类，实现方法 <code>Process</code> 或对应的异步方法 <code>ProcessAsync</code>。</p>
+<h4 id="View-components"><a href="#View-components" class="headerlink" title="View components"></a>View components</h4><p>View components 和 partial views 很相似，但是比 partial views 更强大，用来解决不同的问题。  </p>
+<h5 id="如何写一个-View-components"><a href="#如何写一个-View-components" class="headerlink" title="如何写一个 View components"></a>如何写一个 View components</h5><p>继承 <code>ViewComponent</code> 类，实现方法 <code>Invoke</code> 或对应的异步方法 <code>InvokeAsync</code>。<br>对应 ViewComponent 的视图文件，必须放在 <code>Views\Shared\Components\&lt;component-name&gt;\Default.cshtml</code>。</p>
+<h2 id="如何部署-ASP-NET-Core-应用程序"><a href="#如何部署-ASP-NET-Core-应用程序" class="headerlink" title="如何部署 ASP.NET Core 应用程序"></a>如何部署 ASP.NET Core 应用程序</h2><h3 id="在IIS下部署"><a href="#在IIS下部署" class="headerlink" title="在IIS下部署"></a>在IIS下部署</h3><p>每个 ASP.NET Core 应用程序都是自寄宿的，能够不依赖外部的Web服务器运行。但是当需要优化性能、响应更快时，Kestrel 就缺少像 IIS 这样成熟的 Web 服务器的管理选项。<br>自寄宿的应用程序需要用不同的途径寄宿在 IIS 中。IIS 只是作为一个代理服务器，接收客户端的请求并将它们转发给 Kestrel 上的 ASP.NET Core 应用程序，等处理完成之后，IIS 再将响应返回给客户端。</p>
+<p>为了在 IIS 中寄宿 ASP.NET Core，需要安装 <strong>AspNetCoreModule</strong>。  </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ASP-NET-Core/" rel="tag"># ASP.NET Core</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/23/NET%E7%89%88%E6%9C%AC%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E7%89%88%E6%9C%AC%E7%9A%84%E5%85%B3%E7%B3%BB.html" rel="next" title=".NET版本和运行时版本的关系">
+                <i class="fa fa-chevron-left"></i> .NET版本和运行时版本的关系
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/21/learn-supervisor.html" rel="prev" title="Supervisor入门">
+                Supervisor入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="T羚羊" />
+          <p class="site-author-name" itemprop="name">T羚羊</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/songzheng45" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-NET-Core-和-ASP-NET-Core"><span class="nav-number">1.</span> <span class="nav-text">什么是 .NET Core 和 ASP.NET Core</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NET-Core"><span class="nav-number">1.1.</span> <span class="nav-text">.NET Core</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASP-NET-Core"><span class="nav-number">1.2.</span> <span class="nav-text">ASP.NET Core</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从CLI开始"><span class="nav-number">2.</span> <span class="nav-text">从CLI开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASP-NET-Core-1"><span class="nav-number">3.</span> <span class="nav-text">ASP.NET Core</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动-Web-App"><span class="nav-number">3.1.</span> <span class="nav-text">启动 Web App</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Program-cs"><span class="nav-number">3.1.1.</span> <span class="nav-text">Program.cs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Startup-cs"><span class="nav-number">3.1.2.</span> <span class="nav-text">Startup.cs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖注入-Dependency-Injection"><span class="nav-number">4.</span> <span class="nav-text">依赖注入(Dependency Injection)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用依赖注入"><span class="nav-number">4.1.</span> <span class="nav-text">使用依赖注入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境（Environments）"><span class="nav-number">5.</span> <span class="nav-text">环境（Environments）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旧方式"><span class="nav-number">5.1.</span> <span class="nav-text">旧方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新方式"><span class="nav-number">5.2.</span> <span class="nav-text">新方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建自定义的环境"><span class="nav-number">5.3.</span> <span class="nav-text">创建自定义的环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态文件"><span class="nav-number">6.</span> <span class="nav-text">静态文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误处理和异常页面"><span class="nav-number">7.</span> <span class="nav-text">错误处理和异常页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发者异常页面"><span class="nav-number">7.1.</span> <span class="nav-text">开发者异常页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件（appsettings-json）"><span class="nav-number">8.</span> <span class="nav-text">配置文件（appsettings.json）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两个规则"><span class="nav-number">8.1.</span> <span class="nav-text">两个规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置类"><span class="nav-number">8.2.</span> <span class="nav-text">配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化配置类的实例"><span class="nav-number">8.3.</span> <span class="nav-text">初始化配置类的实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注入配置对象"><span class="nav-number">8.4.</span> <span class="nav-text">注入配置对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志（Logging）"><span class="nav-number">9.</span> <span class="nav-text">日志（Logging）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置日志"><span class="nav-number">9.1.</span> <span class="nav-text">配置日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在程序中使用日志"><span class="nav-number">9.2.</span> <span class="nav-text">在程序中使用日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建自定义的Logger"><span class="nav-number">9.3.</span> <span class="nav-text">创建自定义的Logger</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用程序框架（Application-Framework）"><span class="nav-number">10.</span> <span class="nav-text">应用程序框架（Application Framework）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WebAPI"><span class="nav-number">10.1.</span> <span class="nav-text">WebAPI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC"><span class="nav-number">10.2.</span> <span class="nav-text">MVC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#默认路由"><span class="nav-number">10.2.1.</span> <span class="nav-text">默认路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TagHelper"><span class="nav-number">10.2.2.</span> <span class="nav-text">TagHelper</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建自定义-TagHelper"><span class="nav-number">10.2.2.1.</span> <span class="nav-text">创建自定义 TagHelper</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#View-components"><span class="nav-number">10.2.3.</span> <span class="nav-text">View components</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何写一个-View-components"><span class="nav-number">10.2.3.1.</span> <span class="nav-text">如何写一个 View components</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何部署-ASP-NET-Core-应用程序"><span class="nav-number">11.</span> <span class="nav-text">如何部署 ASP.NET Core 应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在IIS下部署"><span class="nav-number">11.1.</span> <span class="nav-text">在IIS下部署</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">T羚羊</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://xingzheng.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.xingzheng.top/2017/06/16/NET-Core%E7%AC%94%E8%AE%B0.html';
+          this.page.identifier = '2017/06/16/NET-Core笔记.html';
+          this.page.title = 'ASP.NET Core 笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xingzheng.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

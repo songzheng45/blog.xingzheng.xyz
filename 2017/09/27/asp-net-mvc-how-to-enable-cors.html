@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ASP.NET MVC,CORS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="浏览器出于安全性考虑, 会阻止 AJAX 请求其他域名下的资源. 这个限制叫作 same-origin(同源) 策略.   什么是同源?如果两个 URL 有相同的scheme、域名和端口, 他们就有相同的来源. 以下两个 URL 是同源的:  http:&#x2F;&#x2F;example.com&#x2F;foo.html http:&#x2F;&#x2F;example.com&#x2F;bar.html  以下这些 URL 相比上面两个是非同源的:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASP.NET MVC 启用 CORS">
+<meta property="og:url" content="http://blog.xingzheng.top/2017/09/27/asp-net-mvc-how-to-enable-cors.html">
+<meta property="og:site_name" content="Just Do It">
+<meta property="og:description" content="浏览器出于安全性考虑, 会阻止 AJAX 请求其他域名下的资源. 这个限制叫作 same-origin(同源) 策略.   什么是同源?如果两个 URL 有相同的scheme、域名和端口, 他们就有相同的来源. 以下两个 URL 是同源的:  http:&#x2F;&#x2F;example.com&#x2F;foo.html http:&#x2F;&#x2F;example.com&#x2F;bar.html  以下这些 URL 相比上面两个是非同源的:">
+<meta property="article:published_time" content="2017-09-27T17:24:15.000Z">
+<meta property="article:modified_time" content="2017-09-27T17:24:15.000Z">
+<meta property="article:author" content="T羚羊">
+<meta property="article:tag" content="ASP.NET MVC">
+<meta property="article:tag" content="CORS">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'PN4M01UV5N',
+      apiKey: 'dbff6e5c0113a2de63f2b2838654f606',
+      indexName: 'blog.xingzheng.me',
+      hits: {"per_page":15},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.xingzheng.top/2017/09/27/asp-net-mvc-how-to-enable-cors.html"/>
+
+
+
+
+
+  <title>ASP.NET MVC 启用 CORS | Just Do It</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-97888598-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2045c6955a2f216146dd08378ea8d802";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Just Do It" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just Do It</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.xingzheng.top/2017/09/27/asp-net-mvc-how-to-enable-cors.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="T羚羊">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just Do It">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ASP.NET MVC 启用 CORS</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-27T17:24:15+00:00">
+                2017-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/27/asp-net-mvc-how-to-enable-cors.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/27/asp-net-mvc-how-to-enable-cors.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>浏览器出于安全性考虑, 会阻止 AJAX 请求其他域名下的资源. 这个限制叫作 <code>same-origin</code>(同源) 策略.  </p>
+<h2 id="什么是同源"><a href="#什么是同源" class="headerlink" title="什么是同源?"></a>什么是同源?</h2><p>如果两个 URL 有相同的scheme、域名和端口, 他们就有相同的来源.</p>
+<p>以下两个 URL 是同源的:</p>
+<ul>
+<li><code>http://example.com/foo.html</code></li>
+<li><code>http://example.com/bar.html</code></li>
+</ul>
+<p>以下这些 URL 相比上面两个是非同源的:</p>
+<ul>
+<li><code>http://example.net</code>, 不同的域名</li>
+<li><code>http://www.example.com/foo.html</code>, 不同的子域名</li>
+<li><code>https://example.com/foo.html</code>, 不同的 scheme</li>
+<li><code>http://example.com:9000/foo.html</code>, 不同的端口</li>
+</ul>
+<p>例如, 在 <code>www.xingzheng.me/books</code> 页面上通过 AJAX 访问 <code>www.xingzheng.me/api/blogs</code> 是没问题的. 但是访问 <code>api.xingzheng.me/blogs</code> 就会失败, 浏览器控制台会输出如下错误:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XMLHttpRequest cannot load http:&#x2F;&#x2F;api.xingzheng.me&#x2F;blogs. </span><br><span class="line">No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. </span><br><span class="line">Origin &#39;http:&#x2F;&#x2F;www.xingzheng.me&#39; is therefore not allowed access.</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>同源策略不会阻止浏览器发送请求, 但是会阻止应用程序”看到”响应内容.<br>同源策略能够阻止恶意网站读取其他网站的敏感数据.  </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="什么是-CORS"><a href="#什么是-CORS" class="headerlink" title="什么是 CORS"></a>什么是 CORS</h2><p><a href="http://www.w3.org/TR/cors/" target="_blank" rel="noopener">Cross Origin Resource Sharing</a>(CORS) 是一个 w3c 标准, 允许服务器放宽 <code>same-origin</code> 策略. 使用 CORS , 服务器可以在允许一些”跨源”的请求的同时拒绝其他的请求. CORS 比早期的技术如 JSONP 更安全、更灵活.</p>
+<h2 id="CORS-是如何工作的"><a href="#CORS-是如何工作的" class="headerlink" title="CORS 是如何工作的?"></a>CORS 是如何工作的?</h2><p>CORS 规范介绍了几个新的 HTTP 头来允许 <code>cross-origin</code> 请求. 如果浏览器支持 CORS , 它会自动设置这些 HTTP 头, 我们在 Javascrpit 代码中什么都不用做.</p>
+<p>例如, 以下是一个跨域请求的请求头信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET http:&#x2F;&#x2F;www.caiwu.com&#x2F;message.html HTTP&#x2F;1.1</span><br><span class="line">Host: www.caiwu.com</span><br><span class="line">Origin: http:&#x2F;&#x2F;m.caiwu.com</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Referer: http:&#x2F;&#x2F;m.caiwu.com&#x2F;index.html</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,en;q&#x3D;0.6,zh-TW;q&#x3D;0.4,en-US;q&#x3D;0.2</span><br></pre></td></tr></table></figure><br><code>Origin</code> 的值就是发出请求的域名.</p>
+<p>服务器如果允许本次请求, 则在响应头中设置 <code>Access-Control-Allow-Origin</code>, 值就是上面 <code>Origin</code> 的值(如果是 <code>*</code> 表示允许来自所有 <code>origin</code> 的请求, 有很大安全隐患).<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br><span class="line">Content-Type: text&#x2F;html; charset&#x3D;utf-8</span><br><span class="line">Access-Control-Allow-Origin: http:&#x2F;&#x2F;m.caiwu.com</span><br><span class="line">Date: Wed, 27 Sep 2017 02:47:18 GMT</span><br></pre></td></tr></table></figure><br>如果响应头中不包含 <code>Access-Control-Allow-Origin</code>, 表示服务器不允许跨域请求, 则请求失败, 浏览器会明确指出不允许该请求. 即使服务器返回成功(200), 浏览器也不会让客户端看到响应内容.  </p>
+<h3 id="预检请求"><a href="#预检请求" class="headerlink" title="预检请求"></a>预检请求</h3><p>对一些 CORS 请求,在向资源发出真正的请求之前, 浏览器会发送一个额外请求, 叫作”预检请求”.</p>
+<p>先看个例子, 以下是预检请求的请求头:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS http:&#x2F;&#x2F;myservice.azurewebsites.net&#x2F;api&#x2F;test HTTP&#x2F;1.1</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Origin: http:&#x2F;&#x2F;myclient.azurewebsites.net</span><br><span class="line">Access-Control-Request-Method: PUT</span><br><span class="line">Access-Control-Request-Headers: accept, x-my-custom-header</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident&#x2F;6.0)</span><br><span class="line">Host: myservice.azurewebsites.net</span><br><span class="line">Content-Length: 0</span><br></pre></td></tr></table></figure></p>
+<p>预检请求使用 HTTP OPTIONS 方法, 它包含两个特殊的请求头: </p>
+<ul>
+<li>Access-Control-Request-Method<br>  后续实际请求中使用的 HTTP 方法.</li>
+<li>Access-Control-Request-Headers<br>  一个请求头列表, 包含服务端应用程序在实际请求中设置的(不包含浏览器设置的头).</li>
+</ul>
+<p>预检请求的响应头, 如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Content-Length: 0</span><br><span class="line">Access-Control-Allow-Origin: http:&#x2F;&#x2F;myclient.azurewebsites.net</span><br><span class="line">Access-Control-Allow-Headers: x-my-custom-header</span><br><span class="line">Access-Control-Allow-Methods: PUT</span><br><span class="line">Date: Wed, 05 Jun 2013 06:33:22 GMT</span><br></pre></td></tr></table></figure><br>响应包含的 <code>Access-Control-Allow-Methods</code> 列出允许的方法, 和一个可选的 <code>Access-Control-Allow-Headers</code> 头, 列出允许的头.<br>如果预检请求成功, 浏览器会发送实际的请求.</p>
+<h2 id="ASP-NET-MVC5-启用-CORS"><a href="#ASP-NET-MVC5-启用-CORS" class="headerlink" title="ASP.NET MVC5 启用 CORS"></a>ASP.NET MVC5 启用 CORS</h2><p>在 ASP.NET MVC5 中支持 CORS 有三种方式:</p>
+<ul>
+<li>自定义 ActionFilterAttribute</li>
+<li>Web.config 配置 <code>httpProtocol/customHeaders</code></li>
+</ul>
+<h3 id="自定义-ActionFilterAttribute"><a href="#自定义-ActionFilterAttribute" class="headerlink" title="自定义 ActionFilterAttribute"></a>自定义 ActionFilterAttribute</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class AllowCORSAttribute : ActionFilterAttribute</span><br><span class="line">&#123;</span><br><span class="line">    public override void OnActionExecuting(ActionExecutingContext filterContext)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; 支持多个域名的跨域请求</span><br><span class="line">        List&lt;string&gt; domains &#x3D; new List&lt;string&gt;() &#123; &quot;http:&#x2F;&#x2F;domain1.com&quot;, &quot;http:&#x2F;&#x2F;domain2.com&quot; &#125;;</span><br><span class="line">        var host &#x3D; filterContext.HttpContext.Request.UrlReferrer.Host;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        var filterHost &#x3D; domains.FirstOrDefault(x &#x3D;&gt; x.Contains(host));</span><br><span class="line">        if (filterHost !&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; 允许跨域请求的域名</span><br><span class="line">            filterContext.HttpContext.Response.Headers.Add(&quot;Access-Control-Allow-Origin&quot;, filterHost);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 如果请求要传递cookie或其他认证方案所需的信息, 需要设置 Access-Control-Allow-Credentials 为 true</span><br><span class="line">            filterContext.HttpContext.Response.Headers.Add(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;); </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        base.OnActionExecuting(filterContext);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后将该过滤器应用到 Action、Controller 或者全局。</p>
+<h3 id="Web-config-配置-httpProtocol-customHeaders"><a href="#Web-config-配置-httpProtocol-customHeaders" class="headerlink" title="Web.config 配置 httpProtocol/customHeaders"></a>Web.config 配置 <code>httpProtocol/customHeaders</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.webServer</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">clear</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Access-Control-Allow-Origin"</span> <span class="attr">value</span>=<span class="string">"http://domain1.com"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"Access-Control-Allow-Credentials"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;/<span class="name">customHeaders</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">httpProtocol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.webServer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><h3 id="ASP-NET-WebAPI-2-启用-CORS"><a href="#ASP-NET-WebAPI-2-启用-CORS" class="headerlink" title="ASP.NET WebAPI 2 启用 CORS"></a>ASP.NET WebAPI 2 启用 CORS</h3><p><a href="https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api" target="_blank" rel="noopener">Enabling Cross-Origin Requests in ASP.NET Web API 2</a></p>
+<h3 id="ASP-NET-Core-启用-CORS"><a href="#ASP-NET-Core-启用-CORS" class="headerlink" title="ASP.NET Core 启用 CORS"></a>ASP.NET Core 启用 CORS</h3><p><a href="https://docs.microsoft.com/en-us/aspnet/core/security/cors" target="_blank" rel="noopener">Enabling Cross-Origin Requests (CORS)</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ASP-NET-MVC/" rel="tag"># ASP.NET MVC</a>
+          
+            <a href="/tags/CORS/" rel="tag"># CORS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/21/learn-supervisor.html" rel="next" title="Supervisor入门">
+                <i class="fa fa-chevron-left"></i> Supervisor入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/09/jetbrains-activation.html" rel="prev" title="JetBrains 激活">
+                JetBrains 激活 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="T羚羊" />
+          <p class="site-author-name" itemprop="name">T羚羊</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/songzheng45" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是同源"><span class="nav-number">1.</span> <span class="nav-text">什么是同源?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-CORS"><span class="nav-number">2.</span> <span class="nav-text">什么是 CORS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS-是如何工作的"><span class="nav-number">3.</span> <span class="nav-text">CORS 是如何工作的?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预检请求"><span class="nav-number">3.1.</span> <span class="nav-text">预检请求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASP-NET-MVC5-启用-CORS"><span class="nav-number">4.</span> <span class="nav-text">ASP.NET MVC5 启用 CORS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义-ActionFilterAttribute"><span class="nav-number">4.1.</span> <span class="nav-text">自定义 ActionFilterAttribute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-config-配置-httpProtocol-customHeaders"><span class="nav-number">4.2.</span> <span class="nav-text">Web.config 配置 httpProtocol&#x2F;customHeaders</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ASP-NET-WebAPI-2-启用-CORS"><span class="nav-number">5.1.</span> <span class="nav-text">ASP.NET WebAPI 2 启用 CORS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASP-NET-Core-启用-CORS"><span class="nav-number">5.2.</span> <span class="nav-text">ASP.NET Core 启用 CORS</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">T羚羊</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://xingzheng.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.xingzheng.top/2017/09/27/asp-net-mvc-how-to-enable-cors.html';
+          this.page.identifier = '2017/09/27/asp-net-mvc-how-to-enable-cors.html';
+          this.page.title = 'ASP.NET MVC 启用 CORS';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xingzheng.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
